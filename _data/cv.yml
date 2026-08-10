@@ -1,10 +1,10 @@
 cv:
   name: Tunahan Bilgiç
-  label: Data Analytics and Business Intelligence Expert
+  label: Data Analytics and Business Intelligence Specialist
   email: mail@tunahanbilgic.dev
   location: Izmir, Türkiye
   image: ""
-  summary: An industrial engineer in data science, passionate about coding, optimization, and learning new technologies
+  summary: An industrial engineer in data science, passionate about coding, optimization, and learning new technologies.
 
   social_networks:
     - network: GitHub
@@ -15,7 +15,7 @@ cv:
   address:
     street:
     city: Izmir
-    region:
+    region: Türkiye
     postalCode: 35030
     countryCode: TR
 
@@ -28,7 +28,7 @@ cv:
         studyType: Master of Science - MS
         start_date: 2021
         end_date: 2023
-        score: 3.73
+        score: "3.73"
         courses: ""
         highlights:
           - "Thesis: An Assembly Balancing Problem with Identical Parallel Stations and Worker Capability"
@@ -45,8 +45,8 @@ cv:
 
       - institution: Anadolu University
         location: Eskisehir, Türkiye
-        area: Public Administration (Remote)
-        studyType: Bachelor
+        area: Public Administration 
+        studyType: Bachelor (Remote)
         start_date: 2014
         end_date: 2016
 
