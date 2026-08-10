@@ -9,6 +9,11 @@ display_categories: [work, fun]
 horizontal: false
 ---
 
+
+<!-- Bibsearch Feature -->
+
+{% include bib_search.liquid %}
+
 <!-- pages/projects.md -->
 <div class="projects">
 {% if site.enable_project_categories and page.display_categories %}
