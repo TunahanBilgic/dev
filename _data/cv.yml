@@ -10,12 +10,12 @@ cv:
     - network: GitHub
       username: tunahanbilgic
     - network: LinkedIn
-      username: tunahan-bilgiç
+      username: tunahan-bilgic
 
   address:
-    street: 
+    street:
     city: Izmir
-    region: 
+    region:
     postalCode: 35030
     countryCode: TR
 
@@ -23,7 +23,7 @@ cv:
     Education:
       - institution: Özyeğin University
         location: Istanbul, Türkiye
-        url: 
+        url:
         area: Industrial Engineering
         studyType: Master of Science - MS
         start_date: 2021
@@ -31,8 +31,7 @@ cv:
         score: 3.73
         courses: ""
         highlights:
-          - Thesis: An Assembly Balancing Problem with Identical Parallel Stations and Worker Capability
-          
+          - "Thesis: An Assembly Balancing Problem with Identical Parallel Stations and Worker Capability"
 
       - institution: Dokuz Eylül University
         location: Izmir, Türkiye
@@ -41,17 +40,17 @@ cv:
         start_date: 2015
         end_date: 2019
         highlights:
-          - Thesis: Designing a Computer Program Which Does Job Scheduling for a Hybrid Flow Shop Based on Sequence Dependent Setup Times and Missing Operations
-          - Award: 2018/2019 Graduation Projects(Thesis) Third Prize
+          - "Thesis: Designing a Computer Program Which Does Job Scheduling for a Hybrid Flow Shop Based on Sequence Dependent Setup Times and Missing Operations"
+          - "Award: 2018/2019 Graduation Projects (Thesis) Third Prize"
 
-	  - institution: Anadolu University
+      - institution: Anadolu University
         location: Eskisehir, Türkiye
         area: Public Administration (Remote)
         studyType: Bachelor
         start_date: 2014
         end_date: 2016
 
-	  - institution: Ege University
+      - institution: Ege University
         location: Izmir, Türkiye
         area: Automotive Technologies
         studyType: Higher Vocational School
@@ -64,12 +63,12 @@ cv:
         location: Manisa, Türkiye
         start_date: 2025
         end_date: 
-        summary: 
+        summary:
         highlights:
           - ETL Projects
           - Decision Support Systems Development (Cross-Departmental)
-		  - Optimization and Simulation Models
-		  - RPA / AI Project Management
+          - Optimization and Simulation Models
+          - RPA / AI Project Management
 
       - company: Vestel Electronics
         position: Data Analytics and System Development Specialist
@@ -79,44 +78,40 @@ cv:
         highlights:
           - ETL Projects
           - Decision Support Systems Development (Finance)
-		  - Digital Transformation Projects
-		  - Business Systems Development Projects
+          - Digital Transformation Projects
+          - Business Systems Development Projects
 
       - company: Vestel Electronics
         position: Method Engineering Specialist
         location: Manisa, Türkiye
         start_date: 2022
         end_date: 2023
-		highlights:
+        highlights:
           - Optimization Projects
-		  - Facility Cost Analysis
-		  - Digital Transformation Projects
-
+          - Facility Cost Analysis
+          - Digital Transformation Projects
 
       - company: Vestel Electronics
         position: Method Engineer
         location: Manisa, Türkiye
         start_date: 2021
         end_date: 2022
-		highlights:
+        highlights:
           - ManHour Minimization & Cost-Down Projects
-		  - Facility Capacity & Norm-Permanent Staff Calculations
-		  - Feasibility Projects
+          - Facility Capacity & Norm-Permanent Staff Calculations
+          - Feasibility Projects
 
       - company: Internships
         position: Hugo Boss, Etapak, Sürtaş, Erdiloğlu, Ege Beta
-    
-
 
     Awards:
-	
-	  - title: 2209-B Support Program
+      - title: 2209-B Support Program
         authors:
           - ""
         date: 2023-03-20
         awarder: The Scientific and Technological Research Council of Türkiye
         summary: Decision Support System Design for Product Assignment and Determination of the Number of Workers on Assembly Lines
-		
+
       - title: 8th Efficiency Project Awards
         authors:
           - ""
@@ -125,29 +120,22 @@ cv:
         url: https://vpo.sanayi.gov.tr/gecmis-oduller
         summary: Game Plan Line Balancing Optimization
 
-      - title: 2018/2019 Graduation Projects(Thesis) Third Prize
+      - title: 2018/2019 Graduation Projects (Thesis) Third Prize
         authors:
           - "Tunahan Bilgiç"
         date: 2019-06-20
         awarder: Dokuz Eylül University
-		url: https://endustri.deu.edu.tr/wp-content/uploads/2019/07/2018-2019-Bitirme-Projeleri-Sergisi-Dereceleri.pdf
+        url: https://endustri.deu.edu.tr/wp-content/uploads/2019/07/2018-2019-Bitirme-Projeleri-Sergisi-Dereceleri.pdf
         summary: Designing a Computer Program Which Does Job Scheduling for a Hybrid Flow Shop Based on Sequence Dependent Setup Times and Missing Operations
 
     Publications:
       - title: Master Thesis - An Assembly Balancing Problem with Identical Parallel Stations and Worker Capability
         authors:
-          - Tunahan Bilgiç, Dr.Erinç Albey, Dr.Görkem Yılmaz
+          - Tunahan Bilgiç, Dr. Erinç Albey, Dr. Görkem Yılmaz
         publisher: "Council of Higher Education"
         releaseDate: 2023
         url: https://tez.yok.gov.tr/UlusalTezMerkezi/TezGoster?key=nLNfCsWgUluh5T2iyudShtPASB_F_9___ZE9qH9ZewzLGOEfGqhqVyZkUGCfcyx3
         summary: This study aims to assign the workers to the stations depending on their capabilities and not exceeding the cycle time of the line, and increasing the production rate by opening identical parallel stations.
-
-
-    Skills:
-      - name: 
-        level: 
-        icon: fa-solid fa-hashtag
-        keywords: 
 
     Languages:
       - name: Turkish
@@ -156,15 +144,26 @@ cv:
       - name: English
         summary: "Fluent"
 
-    Interests:
-      - name: 
-        icon: 
-        keywords: ""
-
-    Certificates:
-      - name: ""
-        date: ""
-        issuer: ""
-        icon: ""
-
-
+    # Aşağıdaki bölümleri doldurduğunda yorum işaretlerini kaldır.
+    # Boş değerlerle bırakırsan sitede boş kutular olarak görünür.
+    #
+    # Skills:
+    #   - name: Business Intelligence
+    #     level: Advanced
+    #     icon: fa-solid fa-chart-line
+    #     keywords:
+    #       - Power BI
+    #       - DAX
+    #       - SQL
+    #
+    # Interests:
+    #   - name: Optimization
+    #     icon: fa-solid fa-gears
+    #     keywords:
+    #       - Linear Programming
+    #
+    # Certificates:
+    #   - name: ""
+    #     date: ""
+    #     issuer: ""
+    #     icon: ""
