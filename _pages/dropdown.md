@@ -1,13 +1,13 @@
 ---
 layout: page
-title: submenus
+title: Projects
 nav: true
 nav_order: 8
 dropdown: true
 children:
-  - title: bookshelf
+  - title: PBI
     permalink: /books/
   - title: divider
-  - title: blog
+  - title: OR
     permalink: /blog/
 ---

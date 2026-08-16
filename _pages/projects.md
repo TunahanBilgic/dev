@@ -1,10 +1,10 @@
 ---
 layout: page
-title: Projects
+title: Portfolio
 permalink: /projects/
 description: Portfolio Projects.
 nav: true
-nav_order: 3
+nav_order: 2
 display_categories: [Power BI, Optimization]
 horizontal: false
 ---

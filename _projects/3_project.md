@@ -8,6 +8,6 @@ importance: 3
 category: Power BI
 ---
 
-<iframe title="TB Company" width="800" height="640" src="https://app.powerbi.com/view?r=eyJrIjoiMzA0OTViZDUtNDY5OC00ZGQyLTljZjctMzdjZTI2Y2M2NmQ3IiwidCI6IjgxMDUyZTFjLTg4MDQtNGY4Ni1iMjBlLWZlOGUwYjgyY2JmNCIsImMiOjl9&pageName=bd0ca34ce4a83d0e53c8" frameborder="0" allowFullScreen="true"></iframe>
+<iframe title="TB Company" width="800" height="620" src="https://app.powerbi.com/view?r=eyJrIjoiMzA0OTViZDUtNDY5OC00ZGQyLTljZjctMzdjZTI2Y2M2NmQ3IiwidCI6IjgxMDUyZTFjLTg4MDQtNGY4Ni1iMjBlLWZlOGUwYjgyY2JmNCIsImMiOjl9&pageName=bd0ca34ce4a83d0e53c8" frameborder="0" allowFullScreen="true"></iframe>
 
 
