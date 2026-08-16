@@ -1,8 +1,8 @@
 ---
 layout: page
 title: Portfolio
-permalink: /projects/
-description: Portfolio Projects.
+permalink: /portfolio/
+description: Portfolio Projects
 nav: true
 nav_order: 2
 display_categories: [Power BI, Optimization]
@@ -10,9 +10,6 @@ horizontal: false
 ---
 
 
-<!-- Bibsearch Feature -->
-
-{% include bib_search.liquid %}
 
 <!-- pages/projects.md -->
 <div class="projects">

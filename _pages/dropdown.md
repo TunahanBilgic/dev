@@ -6,8 +6,8 @@ nav_order: 8
 dropdown: true
 children:
   - title: PBI
-    permalink: /books/
+    permalink: /portfolio/
   - title: divider
   - title: OR
-    permalink: /blog/
+    permalink: /portfolio/
 ---
