@@ -1,7 +1,7 @@
 ---
 layout: page
 title: SALES Report
-description: Dashboards for Sales Department
+description: Power BI Dashboards for Sales Department
 img: assets/portfolio/pbi_sales.PNG
 importance: 2
 category: Power BI

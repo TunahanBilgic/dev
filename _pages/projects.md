@@ -2,7 +2,7 @@
 layout: page
 title: Portfolio
 permalink: /portfolio/
-description: Portfolio Projects
+description: MY Portfolio
 nav: true
 nav_order: 2
 display_categories: [Power BI, Optimization]

@@ -1,7 +1,7 @@
 ---
 layout: page
 title: HR Report
-description: Dashboards for HR Department
+description: Power BI Dashboards for HR Department
 img: assets/portfolio/pbi_hr.PNG
 redirect: 
 importance: 3
