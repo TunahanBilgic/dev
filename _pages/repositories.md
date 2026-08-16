@@ -1,6 +1,6 @@
 ---
 layout: page
-permalink: /repositories/
+permalink: /github/
 title: Github
 description: 
 nav: true
