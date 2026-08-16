@@ -206,6 +206,7 @@ collections:
     output: true
   projects:
     output: true
+    permalink: /portfolio/:path/
   teachings:
     output: true
 
