@@ -6,3 +6,4 @@ description: Python'da “while” döngüsünü ve “if-elif” koşul deyimin
 tags: code python
 categories: sample-posts
 redirect: https://kodlamaogreniyorum.com/python-hesap-makinesi/
+---
