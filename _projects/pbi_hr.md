@@ -7,8 +7,9 @@ redirect:
 importance: 3
 category: Power BI
 ---
+Power BI dashboard tracking TB Company's workforce composition and recruitment performance across 577 employees, 10 departments, and 5 fiscal years.
 
-You can make the report full screen by clicking the bottom-right corner.
+*You can make the report full screen by clicking the bottom-right corner:*
 
 
 <iframe title="TB Company" width="800" height="550" src="https://app.powerbi.com/view?r=eyJrIjoiMzA0OTViZDUtNDY5OC00ZGQyLTljZjctMzdjZTI2Y2M2NmQ3IiwidCI6IjgxMDUyZTFjLTg4MDQtNGY4Ni1iMjBlLWZlOGUwYjgyY2JmNCIsImMiOjl9&pageName=bd0ca34ce4a83d0e53c8" frameborder="0" allowFullScreen="true"></iframe>
