@@ -48,7 +48,7 @@ while islem ~= "="
 end
 ```
 
-![](/assets/kod/matlab/matlab77.webp){: style="width: 125%; height: auto;" }
+![](/assets/kod/matlab/matlab77.webp){: style="width: 125%;" }
 
 Oluşturduğumuz programda, program hesaplamaya başlamadan önce kullanıcıya işlemler ile ilgili bilgi verdik. Ayrıca yaptığımız ufak eklemeler sayesinde, kullanıcı yapmak istediği işlemi hem operatör(“+”, “-“, “*” veya “/”) aracılığıyla hem de yazarak yapabilme seçeneğine sahip oldu.
 
