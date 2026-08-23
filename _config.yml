@@ -365,8 +365,8 @@ display_categories: ["python-ornek-uygulamalar","matlab-ornek-uygulamalar"] # th
 # -----------------------------------------------------------------------------
 
 scholar:
-  last_name: [Einstein]
-  first_name: [Albert, A.]
+  last_name: [Bilgiç]
+  first_name: [Tunahan, T.]
 
   style: apa
   locale: en
