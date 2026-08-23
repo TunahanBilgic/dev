@@ -1,0 +1,618 @@
+<!DOCTYPE html> <html lang="en"> <head> <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"> <meta charset="utf-8"> <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"> <meta http-equiv="X-UA-Compatible" content="IE=edge"> <title> Python ile Sütun Grafiği (Bar Chart) | Tunahan Bilgiç | Data Analyst </title> <meta name="author" content="Tunahan Bilgiç"> <meta name="description" content="python-ornek-uygulamalar"> <meta name="keywords" content="data,data analyst,tunahan, bilgiç,tunahan bilgiç, portfolio-website"> <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https:; style-src 'self' 'unsafe-inline' https:; img-src 'self' data: https:; font-src 'self' data: https:; media-src 'self' https:; frame-src 'self' https:; connect-src 'self' https:;"> <style>
+  :root {
+    --max-content-width: 930px;
+  }
+</style> <link rel="stylesheet" href="/assets/css/tailwind.css?v=50c64c15cbb9fd1ce6056fdb8bcb4b62"> <link defer rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@7.2.0/css/all.min.css" integrity="sha256-MVopmdyC2tYTiJ8wlktf0uh0v4NgT+vNdyVFepi7Q0c=" crossorigin="anonymous"> <link defer rel="stylesheet" href="https://cdn.jsdelivr.net/npm/academicons@1.9.5/css/academicons.min.css" integrity="sha256-SzrCOBJbGVFMahewkgjwnApaV2+av1DwMAA+/QGLyZw=" crossorigin="anonymous"> <link defer rel="stylesheet" href="https://cdn.jsdelivr.net/npm/scholar-icons@1.0.3/css/scholar-icons.css" integrity="sha256-VY3hHVj/hNX3fYG6wtbA6TcKJQl7+FthzGSyIB64klY=" crossorigin="anonymous"> <link defer rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:100,300,400,500,700|Material+Icons&amp;display=swap"> <link defer rel="stylesheet" href="/assets/css/jekyll-pygments-themes-github.css?v=591dab5a4e56573bf4ef7fd332894c99" media="" id="highlight_theme_light"> <link rel="shortcut icon" href="/assets/img/favicon.ico?v=bd13932341e9943507e07aa41cf2321a"> <link rel="stylesheet" href="/assets/css/main.css?v=3116ba77db9ee1581d05bb3e86fbf7f1"> <link rel="canonical" href="https://tunahanbilgic.dev/blog/2020/python-sutun-grafigi-bar-chart/"> <script src="/assets/js/theme.js?v=5286c3e4c334d0ecb8fc0c40ff4fa7ec"></script> <link defer rel="stylesheet" href="/assets/css/jekyll-pygments-themes-native.css?v=5847e5ed4a4568527aa6cfab446049ca" media="none" id="highlight_theme_dark"> <script>
+    initTheme();
+  </script> </head> <body class="fixed-top-nav "> <header> <nav id="navbar" class="navbar navbar-light navbar-expand-sm fixed-top" role="navigation"> <div class="container"> <a class="navbar-brand title font-weight-lighter" href="/"> Tunahan Bilgiç | Data Analyst </a> <button class="navbar-toggler collapsed navbar-toggler-main" type="button" data-nav-toggle="navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation"> <span class="sr-only">Toggle navigation</span> <span class="icon-bar top-bar"></span> <span class="icon-bar middle-bar"></span> <span class="icon-bar bottom-bar"></span> </button> <div class="collapse navbar-collapse navbar-collapse-main" id="navbarNav"> <ul class="navbar-nav navbar-menu-list flex-nowrap"> <li class="nav-item "> <a class="nav-link" href="/">Home </a> </li> <li class="nav-item "> <a class="nav-link" href="/portfolio/">Portfolio </a> </li> <li class="nav-item "> <a class="nav-link" href="/cv/">CV </a> </li> <li class="nav-item "> <a class="nav-link" href="/github/">Github </a> </li> <li class="nav-item dropdown "> <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-nav-dropdown-toggle="true" aria-haspopup="true" aria-expanded="false">Projects </a> <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown"> <a class="dropdown-item " href="/portfolio/">PBI</a> <div class="dropdown-divider"></div> <a class="dropdown-item " href="/portfolio/">OR</a> <div class="dropdown-divider"></div> <a class="dropdown-item " href="/kod/">Kodlama Öğreniyorum</a> </div> </li> <li class="nav-item"> <button id="search-toggle" type="button" title="Search" aria-label="Open search"> <span class="nav-link">ctrl k <i class="fa-solid fa-magnifying-glass"></i></span> </button> </li> <li class="toggle-container"> <button id="light-toggle" type="button" title="Change theme" aria-label="Change color theme"> <i class="fa-half-sun-moon" id="light-toggle-system"></i> <i class="fa-solid fa-moon" id="light-toggle-dark"></i> <i class="fa-solid fa-sun" id="light-toggle-light"></i> </button> </li> </ul> </div> </div> </nav> <progress id="progress" value="0"> <div class="progress-container"> <span class="progress-bar"></span> </div> </progress> </header> <div class="container mt-5" role="main"> <div class="post"> <header class="post-header"> <h1 class="post-title">Python ile Sütun Grafiği (Bar Chart)</h1> <p class="post-meta"> Created on January 04, 2020 </p> <p class="post-tags"> <a href="/blog/2020"> <i class="fa-solid fa-calendar fa-sm"></i> 2020 </a>   ·   <a href="/blog/tag/bar-chart"> <i class="fa-solid fa-hashtag fa-sm"></i> bar chart</a>   <a href="/blog/tag/python-grafikler"> <i class="fa-solid fa-hashtag fa-sm"></i> python grafikler</a>   <a href="/blog/tag/s%C3%BCtun-grafi%C4%9Fi"> <i class="fa-solid fa-hashtag fa-sm"></i> sütun grafiği</a>   <a href="/blog/tag/python"> <i class="fa-solid fa-hashtag fa-sm"></i> python</a>   ·   <a href="/blog/category/python-ornek-uygulamalar"> <i class="fa-solid fa-tag fa-sm"></i> python-ornek-uygulamalar</a> </p> </header> <article class="post-content"> <div id="markdown-content"> <p>Çalışmada Kullanılan Modüller:</p> <ul> <li>Tkinter: Arayüz ve grafik oluşturma</li> <li>Random: Sütunlara rastgele renkler verme</li> </ul> <p>Bu yazımızda, Python’da “Tkinter” modülünü kullanarak basit sütun grafiği oluşturacağız. Bu işi yapan modüller elbette mevcut ancak modüllere olan bağlılığı azaltmak ve programlama bilgimizi geliştirmek amacıyla kodları kendimiz oluşturacağız. Farklı kullanımlar görmek amacıyla grafik verilerini, sözlük içinde sözlük yapısında programa dahil edeceğiz. Grafiğimiz bir arayüz ile gösterilecek ve bu arayüzde 3 adet buton olacak. Bu 3 buton; verilerin isimlerini, değerlerini ve yardımcı çizgileri açıp kapatmaya yaracak. Vakit kaybetmeden kodlama kısmına geçelim.</p> <p>Hatırlatma: Programı yazarken, kodların satır numaralarını takip etmeniz kolaylık sağlayacaktır.</p> <p>Öncelikle programımıza modülleri ekliyoruz:</p> <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">#!/usr/bin/env python
+</span><span class="n">__author__</span>     <span class="o">=</span> <span class="sh">"</span><span class="s">Tunahan Bilgiç</span><span class="sh">"</span>
+<span class="n">__copyright__</span>  <span class="o">=</span> <span class="sh">"</span><span class="s">kodlamaogreniyorum.com, Copyright 2020</span><span class="sh">"</span>
+
+<span class="kn">import</span> <span class="n">tkinter</span> <span class="k">as</span> <span class="n">Tk</span>
+<span class="kn">from</span> <span class="n">random</span> <span class="kn">import</span> <span class="n">randint</span>
+</code></pre></div></div> <p>Değişik kullanımlar görelim diye verilerimizi sözlük içinde sözlük olarak aktaracağımızdan bahsetmiştik. Bu kısımda gerekli değişikleri yaparak, verilerinizi veri tabanından, Excel’den veya başka bir ortamdan aktarabilirsiniz.</p> <p>“elemanlar” isimli sözlüğün, farklı isimlerde sözlükleri var.(“X”, “Y”, …) Örnek olarak, “X” sözlüğünü inceleyelim. “X” sözlüğünde iki tane anahtar bulunmaktadır. Bu anahtarlar, “X” ‘in grafikteki değerini ve renk kodunu içermektedir. Renkleri rastgele oluşturacağımız için “renk” anahtarının değeri bulunmamaktadır.</p> <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">elemanlar</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="sh">"</span><span class="s">X</span><span class="sh">"</span> <span class="p">:</span> <span class="p">{</span>
+    <span class="sh">"</span><span class="s">değer</span><span class="sh">"</span> <span class="p">:</span> <span class="mi">1500</span><span class="p">,</span>
+    <span class="sh">"</span><span class="s">renk</span><span class="sh">"</span> <span class="p">:</span> <span class="sh">""</span>
+  <span class="p">},</span>
+  <span class="sh">"</span><span class="s">Y</span><span class="sh">"</span> <span class="p">:</span> <span class="p">{</span>
+    <span class="sh">"</span><span class="s">değer</span><span class="sh">"</span> <span class="p">:</span> <span class="mi">335</span><span class="p">,</span>
+    <span class="sh">"</span><span class="s">renk</span><span class="sh">"</span> <span class="p">:</span> <span class="sh">""</span>
+  <span class="p">},</span>
+  <span class="sh">"</span><span class="s">Python</span><span class="sh">"</span> <span class="p">:</span> <span class="p">{</span>
+    <span class="sh">"</span><span class="s">değer</span><span class="sh">"</span> <span class="p">:</span> <span class="mi">750</span><span class="p">,</span>
+    <span class="sh">"</span><span class="s">renk</span><span class="sh">"</span> <span class="p">:</span> <span class="sh">""</span>
+  <span class="p">},</span>
+  <span class="sh">"</span><span class="s">Kodlama</span><span class="sh">"</span> <span class="p">:</span> <span class="p">{</span>
+    <span class="sh">"</span><span class="s">değer</span><span class="sh">"</span> <span class="p">:</span> <span class="mi">1000</span><span class="p">,</span>
+    <span class="sh">"</span><span class="s">renk</span><span class="sh">"</span> <span class="p">:</span> <span class="sh">""</span>
+  <span class="p">},</span>
+  <span class="sh">"</span><span class="s">Öğreniyorum</span><span class="sh">"</span> <span class="p">:</span> <span class="p">{</span>
+    <span class="sh">"</span><span class="s">değer</span><span class="sh">"</span> <span class="p">:</span> <span class="mi">1993</span><span class="p">,</span>
+    <span class="sh">"</span><span class="s">renk</span><span class="sh">"</span> <span class="p">:</span> <span class="sh">""</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></div> <p>Renk kodlarını, rastgele olacak şekilde üretelim:</p> <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">j</span> <span class="ow">in</span> <span class="n">elemanlar</span><span class="p">.</span><span class="nf">items</span><span class="p">():</span>
+    <span class="n">renk</span> <span class="o">=</span> <span class="sh">"</span><span class="s">#</span><span class="sh">"</span> <span class="o">+</span> <span class="nf">str</span><span class="p">(</span><span class="nf">randint</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">9</span><span class="p">))</span> <span class="o">+</span> <span class="nf">str</span><span class="p">(</span><span class="nf">randint</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">9</span><span class="p">))</span> <span class="o">+</span> <span class="nf">str</span><span class="p">(</span><span class="nf">randint</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">9</span><span class="p">))</span> <span class="o">+</span> <span class="nf">str</span><span class="p">(</span><span class="nf">randint</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">9</span><span class="p">))</span> <span class="o">+</span> <span class="nf">str</span><span class="p">(</span><span class="nf">randint</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">9</span><span class="p">))</span> <span class="o">+</span> <span class="nf">str</span><span class="p">(</span><span class="nf">randint</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">9</span><span class="p">))</span>
+    <span class="n">elemanlar</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="sh">'</span><span class="s">renk</span><span class="sh">'</span><span class="p">]</span> <span class="o">=</span> <span class="n">renk</span>
+</code></pre></div></div> <p>Kullanıcılar farklı ekran boyutlarına sahiptir. Bu nedenle, arayüz ve grafiğimizi her kullanıcının ekranına özel ölçekli olarak oluşturacağız. Kullanıcının ekran boyutlarını öğrenmek için öncelikle arayüzü oluşturuyoruz ve temel ayarları yapıyoruz:</p> <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">arayuz</span> <span class="o">=</span> <span class="n">Tk</span><span class="p">.</span><span class="nc">Tk</span><span class="p">()</span>
+
+<span class="c1">#Kullanıcı Arayüzü Ayarları
+</span><span class="n">ekran_olcek</span> <span class="o">=</span> <span class="mf">0.6</span> <span class="c1">#Boyut için
+</span><span class="n">ekran_gen</span> <span class="o">=</span> <span class="nf">int</span><span class="p">(</span><span class="n">arayuz</span><span class="p">.</span><span class="nf">winfo_screenwidth</span><span class="p">()</span> <span class="o">*</span> <span class="n">ekran_olcek</span><span class="p">)</span>
+<span class="n">ekran_yuk</span> <span class="o">=</span> <span class="nf">int</span><span class="p">(</span><span class="n">arayuz</span><span class="p">.</span><span class="nf">winfo_screenheight</span><span class="p">()</span> <span class="o">*</span> <span class="n">ekran_olcek</span><span class="p">)</span>
+<span class="n">ekran_boyutu</span> <span class="o">=</span> <span class="nf">str</span><span class="p">(</span><span class="n">ekran_gen</span><span class="p">)</span><span class="o">+</span><span class="sh">'</span><span class="s">x</span><span class="sh">'</span><span class="o">+</span><span class="nf">str</span><span class="p">(</span><span class="n">ekran_yuk</span><span class="p">)</span>
+<span class="n">arayuz</span><span class="p">.</span><span class="nf">geometry</span><span class="p">(</span><span class="n">ekran_boyutu</span><span class="p">)</span>
+<span class="n">arayuz</span><span class="p">.</span><span class="nf">title</span><span class="p">(</span><span class="sh">"</span><span class="s">Sütun Grafiği</span><span class="sh">"</span><span class="p">)</span>
+<span class="n">arayuz</span><span class="p">.</span><span class="nf">resizable</span><span class="p">(</span><span class="bp">False</span><span class="p">,</span> <span class="bp">False</span><span class="p">)</span>
+<span class="n">canvas</span> <span class="o">=</span> <span class="n">Tk</span><span class="p">.</span><span class="nc">Canvas</span><span class="p">(</span><span class="n">arayuz</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="n">ekran_gen</span><span class="p">,</span> <span class="n">height</span><span class="o">=</span><span class="n">ekran_yuk</span><span class="p">,</span> <span class="n">background</span><span class="o">=</span><span class="sh">"</span><span class="s">white smoke</span><span class="sh">"</span><span class="p">)</span>
+<span class="n">canvas</span><span class="p">.</span><span class="nf">pack</span><span class="p">(</span><span class="n">expand</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">ayarlar</span> <span class="o">=</span> <span class="p">[</span><span class="bp">True</span><span class="p">,</span> <span class="bp">True</span><span class="p">,</span> <span class="bp">True</span><span class="p">]</span>  <span class="c1"># Sırasıyla: Çizgi, Değerler, İsimler (butonlar için)
+</span></code></pre></div></div> <p>Arayüzü oluşturduk. Şimdi bu arayüzün üzerindeki hesaplamaları yapalım. Arayüz alanının %90’ını kullanılarak, grafiğin ve butonların arayüzün kenarlarına çarpmasını engelleyelim. Sonrasında, yatay alanın %75’ini grafik için geri kalanını da butonlar için ayıralım ve sütunların hesaplarını yapalım:</p> <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">degerler</span> <span class="o">=</span> <span class="p">[</span><span class="n">t</span><span class="p">[</span><span class="sh">"</span><span class="s">değer</span><span class="sh">"</span><span class="p">]</span> <span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="n">elemanlar</span><span class="p">.</span><span class="nf">values</span><span class="p">()]</span>
+<span class="n">kul_alan_x</span> <span class="o">=</span> <span class="nf">int</span><span class="p">(</span><span class="n">ekran_gen</span> <span class="o">*</span> <span class="mf">0.9</span><span class="p">)</span>       <span class="c1">#Arayüzün 0.9'u
+</span><span class="n">grafik_alan_y</span> <span class="o">=</span> <span class="nf">int</span><span class="p">(</span><span class="n">ekran_yuk</span> <span class="o">*</span> <span class="mf">0.9</span><span class="p">)</span>    <span class="c1">#Arayüzün 0.9'u
+</span><span class="n">grafik_alan_x</span> <span class="o">=</span> <span class="nf">int</span><span class="p">(</span><span class="n">kul_alan_x</span> <span class="o">*</span> <span class="mf">0.75</span><span class="p">)</span>  <span class="c1">#Yatay eksenin 0.75'i grafiğin
+</span><span class="n">buton_x</span> <span class="o">=</span> <span class="p">((</span><span class="n">kul_alan_x</span> <span class="o">-</span> <span class="n">grafik_alan_x</span><span class="p">)</span> <span class="o">/</span> <span class="mi">2</span><span class="p">)</span> <span class="o">+</span> <span class="n">grafik_alan_x</span>
+<span class="n">buton_pay_y</span> <span class="o">=</span> <span class="p">(</span><span class="n">grafik_alan_y</span> <span class="o">*</span> <span class="mf">0.5</span><span class="p">)</span> <span class="o">/</span> <span class="mi">3</span>
+<span class="n">bar_kalinlik</span> <span class="o">=</span> <span class="n">pay_x</span> <span class="o">=</span> <span class="nf">int</span><span class="p">((</span><span class="n">grafik_alan_x</span> <span class="o">/</span> <span class="p">(</span><span class="nf">len</span><span class="p">(</span><span class="n">elemanlar</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span><span class="p">))</span> <span class="o">/</span> <span class="mi">2</span><span class="p">)</span>
+<span class="n">pay_y</span> <span class="o">=</span> <span class="nf">int</span><span class="p">(</span><span class="n">grafik_alan_y</span> <span class="o">*</span> <span class="mf">0.1</span><span class="p">)</span>
+<span class="n">bar_boy</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span> <span class="o">/</span> <span class="nf">max</span><span class="p">(</span><span class="n">degerler</span><span class="p">)</span> <span class="o">*</span> <span class="p">(</span><span class="n">grafik_alan_y</span> <span class="o">-</span> <span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="n">pay_y</span><span class="p">)))</span>
+</code></pre></div></div> <p>Artık grafiğimizi oluşturma kısmına geçiyoruz. Ben başka projelerimde kullanmak için grafiği fonksiyon ile oluşturmayı seçtim. Siz bu kısımdaki yapıyı düzenleyerek, grafiği “sınıf” olarak tanımlayabilirsiniz. Bu kısımdan itibaren, fonksiyonun kodlarını parça parça inceleyeceğiz. Fonksiyonu tanımlayalım ve eksenleri arayüz üzerinde oluşturalım:</p> <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">bar_chart</span><span class="p">(</span><span class="n">elemanlar</span><span class="p">,</span> <span class="n">ayarlar</span><span class="p">):</span>
+
+    <span class="n">x</span> <span class="o">=</span> <span class="n">pay_x</span>
+    <span class="n">y</span> <span class="o">=</span> <span class="n">pay_y</span>
+    <span class="n">canvas</span><span class="p">.</span><span class="nf">create_line</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">grafik_alan_y</span><span class="p">,</span> <span class="n">grafik_alan_x</span><span class="p">,</span> <span class="n">grafik_alan_y</span><span class="p">,</span> <span class="n">fill</span><span class="o">=</span><span class="sh">"</span><span class="s">black</span><span class="sh">"</span><span class="p">)</span>  <span class="c1"># X ekseni
+</span>    <span class="n">canvas</span><span class="p">.</span><span class="nf">create_line</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">grafik_alan_y</span><span class="p">,</span> <span class="n">fill</span><span class="o">=</span><span class="sh">"</span><span class="s">black</span><span class="sh">"</span><span class="p">)</span>                          <span class="c1"># Y ekseni
+</span>    <span class="n">canvas</span><span class="p">.</span><span class="nf">create_text</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span> <span class="o">-</span> <span class="p">(</span><span class="n">pay_y</span> <span class="o">/</span> <span class="mi">2</span><span class="p">),</span> <span class="n">text</span><span class="o">=</span><span class="sh">"</span><span class="s">Değerler</span><span class="sh">"</span><span class="p">)</span>
+    <span class="n">canvas</span><span class="p">.</span><span class="nf">create_text</span><span class="p">(</span><span class="n">grafik_alan_x</span> <span class="o">+</span> <span class="n">pay_x</span><span class="p">,</span> <span class="n">grafik_alan_y</span><span class="p">,</span> <span class="n">text</span><span class="o">=</span><span class="sh">"</span><span class="s">Elemanlar</span><span class="sh">"</span><span class="p">)</span>
+</code></pre></div></div> <p>Artık grafiği oluşturabiliriz. Bunun için “canvas” ‘ta dikdörtgen oluşturmamıza yarayan, “canvas.create_rectangle” komutunu kullanacağız. Sözlüğün elemanları arasında dolaşan döngüyü oluşturalım. Grafiğin ayarları, sözlüğün elemanına bağlı olduğu için onların da döngü içinde yer alması gerekir:</p> <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">j</span> <span class="ow">in</span> <span class="n">elemanlar</span><span class="p">.</span><span class="nf">items</span><span class="p">():</span>
+
+        <span class="k">if</span> <span class="n">ayarlar</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="ow">is</span> <span class="bp">True</span><span class="p">:</span>
+            <span class="n">canvas</span><span class="p">.</span><span class="nf">create_text</span><span class="p">((</span><span class="n">pay_x</span> <span class="o">/</span> <span class="mi">2</span><span class="p">),</span> <span class="n">grafik_alan_y</span> <span class="o">-</span> <span class="p">(</span><span class="n">elemanlar</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="sh">'</span><span class="s">değer</span><span class="sh">'</span><span class="p">]</span> <span class="o">*</span> <span class="n">bar_boy</span><span class="p">),</span> <span class="n">text</span><span class="o">=</span><span class="n">elemanlar</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="sh">'</span><span class="s">değer</span><span class="sh">'</span><span class="p">])</span>
+
+        <span class="n">x</span> <span class="o">=</span> <span class="n">x</span> <span class="o">+</span> <span class="n">pay_x</span>
+        <span class="n">canvas</span><span class="p">.</span><span class="nf">create_rectangle</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">grafik_alan_y</span> <span class="o">-</span> <span class="p">(</span><span class="n">elemanlar</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="sh">'</span><span class="s">değer</span><span class="sh">'</span><span class="p">]</span> <span class="o">*</span> <span class="n">bar_boy</span><span class="p">),</span> <span class="n">x</span> <span class="o">+</span> <span class="n">bar_kalinlik</span><span class="p">,</span> <span class="n">grafik_alan_y</span><span class="p">,</span> <span class="n">fill</span><span class="o">=</span><span class="n">elemanlar</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="sh">'</span><span class="s">renk</span><span class="sh">'</span><span class="p">])</span>
+
+        <span class="k">if</span> <span class="n">ayarlar</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="ow">is</span> <span class="bp">True</span><span class="p">:</span>
+            <span class="n">canvas</span><span class="p">.</span><span class="nf">create_line</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">grafik_alan_y</span> <span class="o">-</span> <span class="p">(</span><span class="n">elemanlar</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="sh">'</span><span class="s">değer</span><span class="sh">'</span><span class="p">]</span> <span class="o">*</span> <span class="n">bar_boy</span><span class="p">),</span> <span class="n">pay_x</span><span class="p">,</span> <span class="n">grafik_alan_y</span> <span class="o">-</span> <span class="p">(</span><span class="n">elemanlar</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="sh">'</span><span class="s">değer</span><span class="sh">'</span><span class="p">]</span> <span class="o">*</span> <span class="n">bar_boy</span><span class="p">),</span> <span class="n">dash</span><span class="o">=</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">5</span><span class="p">),</span> <span class="n">fill</span><span class="o">=</span><span class="sh">"</span><span class="s">gray15</span><span class="sh">"</span><span class="p">)</span>
+
+        <span class="n">x</span> <span class="o">=</span> <span class="n">x</span> <span class="o">+</span> <span class="n">bar_kalinlik</span>
+
+        <span class="k">if</span> <span class="n">ayarlar</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="ow">is</span> <span class="bp">True</span><span class="p">:</span>
+            <span class="n">canvas</span><span class="p">.</span><span class="nf">create_text</span><span class="p">(</span><span class="n">x</span> <span class="o">-</span> <span class="p">(</span><span class="n">bar_kalinlik</span> <span class="o">/</span> <span class="mi">2</span><span class="p">),</span> <span class="n">grafik_alan_y</span> <span class="o">+</span> <span class="p">(</span><span class="n">pay_y</span> <span class="o">/</span> <span class="mi">2</span><span class="p">),</span> <span class="n">text</span><span class="o">=</span><span class="n">i</span><span class="p">)</span>
+</code></pre></div></div> <blockquote> <p>“create_rectangle” komutunun kullanımı “create_rectangle(x1,y1,x2,y2)” şeklindedir. (x1,y1) dikdörtgenin sol üst köşesini, (x2,y2) dikdörtgenin sağ alt köşesini ifade eder. “(fill=””)” komutu ile dikdörtgenin içini boyamada kullanıyoruz.</p> </blockquote> <blockquote> <p>“x” değişkeni yatay eksende en son çizim yapılan koordinatı temsil etmektedir. Sürekli güncellendiğine dikkat edelim.</p> </blockquote> <p>Butonları ve işlevlerini (fonksiyonlarını) oluşturalım. Butona basıldıktan sonra, eski çizimlerin kalmaması için “canvas” ‘ın temizlenmesi ve tekrar grafik oluşturmamız gerekir:</p> <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    <span class="k">def</span> <span class="nf">isimler_on</span><span class="p">():</span>
+        <span class="k">if</span> <span class="n">ayarlar</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="ow">is</span> <span class="bp">False</span><span class="p">:</span>
+            <span class="n">ayarlar</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="bp">True</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">ayarlar</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="bp">False</span>
+        <span class="n">canvas</span><span class="p">.</span><span class="nf">delete</span><span class="p">(</span><span class="sh">"</span><span class="s">all</span><span class="sh">"</span><span class="p">)</span>
+        <span class="nf">bar_chart</span><span class="p">(</span><span class="n">elemanlar</span><span class="p">,</span> <span class="n">ayarlar</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">cizgi_on</span><span class="p">():</span>
+        <span class="k">if</span> <span class="n">ayarlar</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="ow">is</span> <span class="bp">False</span><span class="p">:</span>
+            <span class="n">ayarlar</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="bp">True</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">ayarlar</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="bp">False</span>
+        <span class="n">canvas</span><span class="p">.</span><span class="nf">delete</span><span class="p">(</span><span class="sh">"</span><span class="s">all</span><span class="sh">"</span><span class="p">)</span>
+        <span class="nf">bar_chart</span><span class="p">(</span><span class="n">elemanlar</span><span class="p">,</span> <span class="n">ayarlar</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">degerler_on</span><span class="p">():</span>
+        <span class="k">if</span> <span class="n">ayarlar</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="ow">is</span> <span class="bp">False</span><span class="p">:</span>
+            <span class="n">ayarlar</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">=</span> <span class="bp">True</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">ayarlar</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">=</span> <span class="bp">False</span>
+        <span class="n">canvas</span><span class="p">.</span><span class="nf">delete</span><span class="p">(</span><span class="sh">"</span><span class="s">all</span><span class="sh">"</span><span class="p">)</span>
+        <span class="nf">bar_chart</span><span class="p">(</span><span class="n">elemanlar</span><span class="p">,</span> <span class="n">ayarlar</span><span class="p">)</span>
+
+    <span class="n">Tk</span><span class="p">.</span><span class="nc">Button</span><span class="p">(</span><span class="n">arayuz</span><span class="p">,</span> <span class="n">font</span><span class="o">=</span><span class="sh">"</span><span class="s">times 12 bold</span><span class="sh">"</span><span class="p">,</span> <span class="n">text</span><span class="o">=</span><span class="sh">"</span><span class="s">İSİMLERİ AÇ / KAPA</span><span class="sh">"</span><span class="p">,</span> <span class="n">command</span><span class="o">=</span><span class="n">isimler_on</span><span class="p">,</span> <span class="n">background</span><span class="o">=</span><span class="sh">"</span><span class="s">green</span><span class="sh">"</span><span class="p">,</span>
+                            <span class="n">anchor</span><span class="o">=</span><span class="sh">"</span><span class="s">nw</span><span class="sh">"</span><span class="p">).</span><span class="nf">place</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">buton_x</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="p">(</span><span class="n">grafik_alan_y</span> <span class="o">/</span> <span class="mi">2</span><span class="p">)</span> <span class="o">-</span> <span class="n">buton_pay_y</span><span class="p">)</span>
+    <span class="n">Tk</span><span class="p">.</span><span class="nc">Button</span><span class="p">(</span><span class="n">arayuz</span><span class="p">,</span> <span class="n">font</span><span class="o">=</span><span class="sh">"</span><span class="s">times 12 bold</span><span class="sh">"</span><span class="p">,</span> <span class="n">text</span><span class="o">=</span><span class="sh">"</span><span class="s">ÇİZGİLERİ AÇ / KAPA</span><span class="sh">"</span><span class="p">,</span> <span class="n">command</span><span class="o">=</span><span class="n">cizgi_on</span><span class="p">,</span> <span class="n">background</span><span class="o">=</span><span class="sh">"</span><span class="s">red</span><span class="sh">"</span><span class="p">,</span>
+                             <span class="n">anchor</span><span class="o">=</span><span class="sh">"</span><span class="s">nw</span><span class="sh">"</span><span class="p">).</span><span class="nf">place</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">buton_x</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="n">grafik_alan_y</span> <span class="o">/</span> <span class="mi">2</span><span class="p">)</span>
+    <span class="n">Tk</span><span class="p">.</span><span class="nc">Button</span><span class="p">(</span><span class="n">arayuz</span><span class="p">,</span> <span class="n">font</span><span class="o">=</span><span class="sh">"</span><span class="s">times 12 bold</span><span class="sh">"</span><span class="p">,</span> <span class="n">text</span><span class="o">=</span><span class="sh">"</span><span class="s">DEĞERLERİ AÇ / KAPA</span><span class="sh">"</span><span class="p">,</span> <span class="n">command</span><span class="o">=</span><span class="n">degerler_on</span><span class="p">,</span> <span class="n">background</span><span class="o">=</span><span class="sh">"</span><span class="s">blue</span><span class="sh">"</span><span class="p">,</span>
+              <span class="n">anchor</span><span class="o">=</span><span class="sh">"</span><span class="s">nw</span><span class="sh">"</span><span class="p">).</span><span class="nf">place</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">buton_x</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="p">(</span><span class="n">grafik_alan_y</span> <span class="o">/</span> <span class="mi">2</span><span class="p">)</span> <span class="o">+</span> <span class="n">buton_pay_y</span><span class="p">)</span>
+</code></pre></div></div> <p>Son olarak, program ilk çalıştığında grafiği oluştursun diye grafik fonksiyonunu çağırıyoruz ve arayüzü ana döngüye* alıyoruz:</p> <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nf">bar_chart</span><span class="p">(</span><span class="n">elemanlar</span><span class="p">,</span> <span class="n">ayarlar</span><span class="p">)</span>
+<span class="n">arayuz</span><span class="p">.</span><span class="nf">mainloop</span><span class="p">()</span>
+</code></pre></div></div> <blockquote> <ul> <li>”Tkinter” modülünün işleyişi gereği, oluşturduğumuz birimleri ana döngüye (mainloop) almamız gerekir. Yoksa oluşturduğumuz birimler görünmeyecektir.</li> </ul> </blockquote> <div style="display: flex; justify-content: center; gap: 10px;"> <img src="/assets/kod/python/python49.png" alt="If-ElseIf-Else Yapısı"> <img src="/assets/kod/python/python50.png" alt="If-ElseIf-Else Yapısı"> <img src="/assets/kod/python/python51.png" alt="If-ElseIf-Else Yapısı"> </div> <p><img src="/assets/kod/python/python52.gif" alt=""></p> <p>Bütün <strong>Python kodlarına</strong> Github sayfam aracılığı ile erişebilirsiniz. Github sayfamın linkine aşağıdan ulaşabilirsiniz. Görüşmek üzere!</p> <p>Github: <a href="https://github.com/TunahanBilgic/kodlamaogreniyorum/tree/main/python" rel="external nofollow noopener" target="_blank">Github Python</a></p> <p>Sitemize destek olmak isteyen sponsorlar için link: <a href="https://patreon.com/tunahanbilgic" rel="external nofollow noopener" target="_blank">Patreon</a></p> </div> </article> <br> <hr> <br> <h2 class="text-3xl font-semibold mb-4 mt-12">Enjoy Reading This Article?</h2> <p class="mb-2">Here are some more articles you might like to read next:</p> <ul class="list-disc pl-7 my-3 space-y-2 marker:text-[var(--global-theme-color)]"> <li class="leading-relaxed"> <a class="underline decoration-1 hover:text-[var(--global-hover-color)]" href="/blog/2021/python-sayi-tabani-donusumleri/">Python Sayı Tabanı Dönüşümleri (Taban Aritmetiği)</a> </li> <li class="leading-relaxed"> <a class="underline decoration-1 hover:text-[var(--global-hover-color)]" href="/blog/2021/python-hesap-makinesi/">Python Hesap Makinesi Programı</a> </li> <li class="leading-relaxed"> <a class="underline decoration-1 hover:text-[var(--global-hover-color)]" href="/blog/2020/matlab-hesap-makinesi/">Matlab Hesap Makinesi Programı</a> </li> <li class="leading-relaxed"> <a class="underline decoration-1 hover:text-[var(--global-hover-color)]" href="/blog/2020/matlab-switch-case-yapisi/">MATLAB Switch – Case Yapısı</a> </li> <li class="leading-relaxed"> <a class="underline decoration-1 hover:text-[var(--global-hover-color)]" href="/blog/2020/matlab-rastgele-sayi-uretme/">MATLAB Rastgele Sayı Üretme (rand, randi, randn)</a> </li> <li class="leading-relaxed"> <a class="underline decoration-1 hover:text-[var(--global-hover-color)]" href="/blog/2020/matlab-excele-veri-aktarma/">MATLAB Excel’e Veri Aktarma</a> </li> <li class="leading-relaxed"> <a class="underline decoration-1 hover:text-[var(--global-hover-color)]" href="/blog/2020/matlab-gantt-grafigi-olusturma/">MATLAB Gantt Grafiği Oluşturma</a> </li> <li class="leading-relaxed"> <a class="underline decoration-1 hover:text-[var(--global-hover-color)]" href="/blog/2020/matlab-excelden-veri-aktarma/">MATLAB Excel’den Veri Aktarma</a> </li> <li class="leading-relaxed"> <a class="underline decoration-1 hover:text-[var(--global-hover-color)]" href="/blog/2020/python-ile-ekok-ve-ebob-bulma/">Python ile EKOK ve EBOB Bulma</a> </li> <li class="leading-relaxed"> <a class="underline decoration-1 hover:text-[var(--global-hover-color)]" href="/blog/2020/matlab-ile-ekok-ve-ebob-bulma/">MATLAB ile EKOK ve EBOB Bulma</a> </li> </ul> </div> </div> <footer class="fixed-bottom" role="contentinfo"> <div class="container mt-0"> © Copyright 2026 Tunahan Bilgiç. Powered by <a href="https://jekyllrb.com/" target="_blank" rel="external nofollow noopener">Jekyll</a> with <a href="https://github.com/alshedivat/al-folio" rel="external nofollow noopener" target="_blank">al-folio</a> theme. Hosted by <a href="https://pages.github.com/" target="_blank" rel="external nofollow noopener">GitHub Pages</a>. Last updated: August 23, 2026. </div> </footer> <script>
+  window.alFolio = {
+    compatBootstrap: false
+  };
+</script> <script src="/assets/js/nav-toggle.js?v=141bd79a73ebc0f0b6ea58e440ae79fc"></script> <script defer src="https://cdn.jsdelivr.net/npm/masonry-layout@4.2.2/dist/masonry.pkgd.min.js" integrity="sha256-Nn1q/fx0H7SNLZMQ5Hw5JLaTRZp0yILA/FRexe19VdI=" crossorigin="anonymous"></script> <script defer src="https://cdn.jsdelivr.net/npm/imagesloaded@5.0.0/imagesloaded.pkgd.min.js" integrity="sha256-htrLFfZJ6v5udOG+3kNLINIKh2gvoKqwEhHYfTTMICc=" crossorigin="anonymous"></script> <script defer src="/assets/js/masonry.js?v=e49affc7bd2646f6acdad1dbe02c2359" type="text/javascript"></script> <script defer type="text/javascript" id="MathJax-script" src="https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/tex-mml-chtml.js" integrity="sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI=" crossorigin="anonymous"></script> <script src="/assets/al_math/js/mathjax-setup.js"></script> <script src="/assets/js/tooltips-setup.js?v=fe487e99db6c43751e6e7bdb2d6a0611"></script> <script src="/assets/js/no_defer.js?v=53b1b1a645525975c963ce8bf8bfefcf"></script> <script defer src="/assets/js/common.js?v=87baac90f765f2f3362dcf6aaf312a8a"></script> <script defer src="/assets/js/copy_code.js?v=c8a01c11a92744d44b093fc3bda915df" type="text/javascript"></script> <script defer src="/assets/js/jupyter_new_tab.js?v=896d254890d9b47f0281f63bfccf0dee"></script> <script async src="https://d1bxh8uas1mnw7.cloudfront.net/assets/embed.js"></script> <script async src="https://badge.dimensions.ai/badge.js"></script> <script async src="https://www.googletagmanager.com/gtag/js?id=G-JMX8XJEMM1"></script> <script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag() {
+    window.dataLayer.push(arguments);
+  }
+  gtag("js", new Date());
+  gtag("config", "G-JMX8XJEMM1");
+</script> <script defer src="https://cdn.jsdelivr.net/npm/medium-zoom@1.1.0/dist/medium-zoom.min.js" integrity="sha256-ZgMyDAIYDYGxbcpJcfUnYwNevG/xi9OHKaR/8GK+jWc=" crossorigin="anonymous"></script> <script defer src="/assets/al_img_tools/js/zoom.js"></script> <script defer src="/assets/js/progress-bar.js?v=499464c5c63ced6cf7ad62509f1e2610" type="text/javascript"></script> <script src="https://cdn.jsdelivr.net/npm/vanilla-back-to-top@7.2.1/dist/vanilla-back-to-top.min.js" integrity="sha256-uMJJ3EoTyfRBoTbR+lrfu1uRQ87RZG8AR3cVNuQVeFg=" crossorigin="anonymous"></script> <script>
+    addBackToTop();
+  </script> <script type="module" src="/assets/al_search/js/search/ninja-keys.min.js"></script> <ninja-keys hidebreadcrumbs noautoloadmdicons placeholder="Type to start searching"></ninja-keys> <script src="/assets/al_search/js/search-setup.js"></script> <script>
+// get the ninja-keys element
+const ninja = document.querySelector('ninja-keys');
+
+// add the home and posts menu items
+ninja.data = [{
+    id: "nav-home",
+    title: "Home",
+    section: "Navigation",
+    handler: () => {
+      window.location.href = "/";
+    },
+  },{id: "nav-portfolio",
+          title: "Portfolio",
+          description: "My Portfolio",
+          section: "Navigation",
+          handler: () => {
+            window.location.href = "/portfolio/";
+          },
+        },{id: "nav-cv",
+          title: "CV",
+          description: "Here&#39;s a short summary of my background, please feel free to contact me for detailed information.",
+          section: "Navigation",
+          handler: () => {
+            window.location.href = "/cv/";
+          },
+        },{id: "nav-github",
+          title: "Github",
+          description: "",
+          section: "Navigation",
+          handler: () => {
+            window.location.href = "/github/";
+          },
+        },{id: "dropdown-pbi",
+              title: "PBI",
+              description: "",
+              section: "Dropdown",
+              handler: () => {
+                window.location.href = "/portfolio/";
+              },
+            },{id: "dropdown-or",
+              title: "OR",
+              description: "",
+              section: "Dropdown",
+              handler: () => {
+                window.location.href = "/portfolio/";
+              },
+            },{id: "dropdown-kodlama-öğreniyorum",
+              title: "Kodlama Öğreniyorum",
+              description: "",
+              section: "Dropdown",
+              handler: () => {
+                window.location.href = "/kod/";
+              },
+            },{id: "post-python-sayı-tabanı-dönüşümleri-taban-aritmetiği",
+        
+          title: "Python Sayı Tabanı Dönüşümleri (Taban Aritmetiği)",
+        
+        description: "python-ornek-uygulamalar",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/blog/2021/python-sayi-tabani-donusumleri/";
+          
+        },
+      },{id: "post-python-hesap-makinesi-programı",
+        
+          title: "Python Hesap Makinesi Programı",
+        
+        description: "Python&#39;da “while” döngüsünü ve “if-elif” koşul deyimini kullanarak dört işlem yapan hesap makinesi programı",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/blog/2021/python-hesap-makinesi/";
+          
+        },
+      },{id: "post-matlab-hesap-makinesi-programı",
+        
+          title: "Matlab Hesap Makinesi Programı",
+        
+        description: "Matlab&#39;da dört işlem yapan hesap makinesi programı",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/blog/2020/matlab-hesap-makinesi/";
+          
+        },
+      },{id: "post-matlab-switch-case-yapısı",
+        
+          title: "MATLAB Switch – Case Yapısı",
+        
+        description: "matlab-kosul-ve-donguler",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/blog/2020/matlab-switch-case-yapisi/";
+          
+        },
+      },{id: "post-matlab-rastgele-sayı-üretme-rand-randi-randn",
+        
+          title: "MATLAB Rastgele Sayı Üretme (rand, randi, randn)",
+        
+        description: "matlab-fonksiyonlar",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/blog/2020/matlab-rastgele-sayi-uretme/";
+          
+        },
+      },{id: "post-matlab-excel-e-veri-aktarma",
+        
+          title: "MATLAB Excel’e Veri Aktarma",
+        
+        description: "matlab-veri-islemleri",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/blog/2020/matlab-excele-veri-aktarma/";
+          
+        },
+      },{id: "post-matlab-gantt-grafiği-oluşturma",
+        
+          title: "MATLAB Gantt Grafiği Oluşturma",
+        
+        description: "matlab-ornek-uygulamalar",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/blog/2020/matlab-gantt-grafigi-olusturma/";
+          
+        },
+      },{id: "post-matlab-excel-den-veri-aktarma",
+        
+          title: "MATLAB Excel’den Veri Aktarma",
+        
+        description: "matlab-veri-islemleri",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/blog/2020/matlab-excelden-veri-aktarma/";
+          
+        },
+      },{id: "post-python-ile-ekok-ve-ebob-bulma",
+        
+          title: "Python ile EKOK ve EBOB Bulma",
+        
+        description: "python-ornek-uygulamalar",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/blog/2020/python-ile-ekok-ve-ebob-bulma/";
+          
+        },
+      },{id: "post-matlab-ile-ekok-ve-ebob-bulma",
+        
+          title: "MATLAB ile EKOK ve EBOB Bulma",
+        
+        description: "matlab-ornek-uygulamalar",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/blog/2020/matlab-ile-ekok-ve-ebob-bulma/";
+          
+        },
+      },{id: "post-python-ile-ortalama-hesaplama-aritmetik-geometrik-harmonik",
+        
+          title: "Python ile Ortalama Hesaplama (Aritmetik, Geometrik, Harmonik)",
+        
+        description: "python-ornek-uygulamalar",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/blog/2020/python-ile-ortalama-hesaplama/";
+          
+        },
+      },{id: "post-matlab-ile-ortalama-hesaplama-aritmetik-geometrik-harmonik",
+        
+          title: "MATLAB ile Ortalama Hesaplama (Aritmetik, Geometrik, Harmonik)",
+        
+        description: "matlab-ornek-uygulamalar",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/blog/2020/matlab-ile-ortalama-hesaplama/";
+          
+        },
+      },{id: "post-python-while-döngüsü",
+        
+          title: "Python “while” Döngüsü",
+        
+        description: "python-kosul-ve-donguler",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/blog/2020/python-while-dongusu/";
+          
+        },
+      },{id: "post-matlab-while-döngüsü",
+        
+          title: "MATLAB “while” Döngüsü",
+        
+        description: "matlab-kosul-ve-donguler",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/blog/2020/matlab-while-dongusu/";
+          
+        },
+      },{id: "post-python-for-döngüsü",
+        
+          title: "Python “for” Döngüsü",
+        
+        description: "python-kosul-ve-donguler",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/blog/2020/python-for-dongusu/";
+          
+        },
+      },{id: "post-matlab-for-döngüsü",
+        
+          title: "MATLAB “for” Döngüsü",
+        
+        description: "matlab-kosul-ve-donguler",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/blog/2020/matlab-for-dongusu/";
+          
+        },
+      },{id: "post-python-if-koşul-deyimi",
+        
+          title: "Python “if” Koşul Deyimi",
+        
+        description: "python-kosul-ve-donguler",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/blog/2020/python-if-kosul-deyimi/";
+          
+        },
+      },{id: "post-matlab-if-koşul-deyimi",
+        
+          title: "MATLAB “if” Koşul Deyimi",
+        
+        description: "matlab-kosul-ve-donguler",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/blog/2020/matlab-if-kosul-deyimi/";
+          
+        },
+      },{id: "post-python-kabarcık-sıralama-bubble-sorting-algoritması",
+        
+          title: "Python Kabarcık Sıralama (Bubble Sorting) Algoritması",
+        
+        description: "python-algoritmalar",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/blog/2020/python-kabarcik-siralama-algoritmasi/";
+          
+        },
+      },{id: "post-matlab-kabarcık-sıralama-bubble-sorting-algoritması",
+        
+          title: "MATLAB Kabarcık Sıralama ( Bubble Sorting) Algoritması",
+        
+        description: "matlab-algoritmalar",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/blog/2020/matlab-kabarcik-siralama-algoritmasi/";
+          
+        },
+      },{id: "post-python-ile-dairesel-grafik-pie-chart",
+        
+          title: "Python ile Dairesel Grafik (Pie Chart)",
+        
+        description: "python-ornek-uygulamalar",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/blog/2020/python-dairesel-grafik/";
+          
+        },
+      },{id: "post-python-seçerek-sıralama-selection-sorting-algoritması",
+        
+          title: "Python Seçerek Sıralama (Selection Sorting) Algoritması",
+        
+        description: "python-algoritmalar",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/blog/2020/python-secerek-siralama-algoritmasi/";
+          
+        },
+      },{id: "post-matlab-seçerek-sıralama-selection-sorting-algoritması",
+        
+          title: "MATLAB Seçerek Sıralama (Selection Sorting) Algoritması",
+        
+        description: "matlab-algoritmalar",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/blog/2020/matlab-secerek-siralama-algoritmasi/";
+          
+        },
+      },{id: "post-python-ile-sütun-grafiği-bar-chart",
+        
+          title: "Python ile Sütun Grafiği (Bar Chart)",
+        
+        description: "python-ornek-uygulamalar",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/blog/2020/python-sutun-grafigi-bar-chart/";
+          
+        },
+      },{id: "post-python-input-komutu-ve-veri-türleri",
+        
+          title: "Python “input()” Komutu ve Veri Türleri",
+        
+        description: "python-temel-bilgiler",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/blog/2020/python-input-komutu-ve-veri-turleri/";
+          
+        },
+      },{id: "post-python-print-komutu-detaylar",
+        
+          title: "Python “print()” Komutu Detaylar",
+        
+        description: "python-temel-bilgiler",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/blog/2019/python-print-komutu-detaylar/";
+          
+        },
+      },{id: "post-python-da-değişken-tanımlama",
+        
+          title: "Python’da Değişken Tanımlama",
+        
+        description: "python-temel-bilgiler",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/blog/2019/pythonda-degisken-tanimlama/";
+          
+        },
+      },{id: "post-python-ile-programlamaya-giriş",
+        
+          title: "Python ile Programlamaya Giriş",
+        
+        description: "python-temel-bilgiler",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/blog/2019/python-ile-programlamaya-giris/";
+          
+        },
+      },{id: "post-matlab-klavyeden-veri-alma",
+        
+          title: "MATLAB Klavyeden Veri Alma",
+        
+        description: "matlab-temel-bilgiler",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/blog/2019/matlab-klavyeden-veri-alma/";
+          
+        },
+      },{id: "post-matlab-klavyeden-veri-alma",
+        
+          title: "MATLAB Klavyeden Veri Alma",
+        
+        description: "matlab-temel-bilgiler",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/blog/2019/matlab-klavyeden-veri-alma-copy-6/";
+          
+        },
+      },{id: "post-matlab-komut-dosyaları-script-files",
+        
+          title: "MATLAB Komut Dosyaları(Script Files)",
+        
+        description: "matlab-temel-bilgiler",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/blog/2019/matlab-script-files/";
+          
+        },
+      },{id: "post-matlab-da-değişken-tanımlama",
+        
+          title: "MATLAB’da Değişken Tanımlama",
+        
+        description: "Matlab Temel Bilgiler",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/blog/2019/matlabda-degisken-tanimlama/";
+          
+        },
+      },{id: "post-matlab-ile-programlamaya-giriş",
+        
+          title: "Matlab ile Programlamaya Giriş",
+        
+        description: "Matlab Temel Bilgiler",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/blog/2019/matlab-ile-programlamaya-giris/";
+          
+        },
+      },{id: "projects-hr-report",
+          title: 'HR Report',
+          description: "Power BI Dashboards for HR Department",
+          section: "Projects",handler: () => {
+              window.location.href = "/portfolio/pbi_hr/";
+            },},{id: "projects-sales-report",
+          title: 'SALES Report',
+          description: "Power BI Dashboards for Sales Department",
+          section: "Projects",handler: () => {
+              window.location.href = "/portfolio/pbi_sales/";
+            },},{
+        id: 'social-email',
+        title: 'email',
+        section: 'Socials',
+        handler: () => {
+          window.open("mailto:%6D%61%69%6C@%74%75%6E%61%68%61%6E%62%69%6C%67%69%63.%64%65%76", "_blank");
+        },
+      },{
+        id: 'social-linkedin',
+        title: 'LinkedIn',
+        section: 'Socials',
+        handler: () => {
+          window.open("https://www.linkedin.com/in/tunahan-bilgiç", "_blank");
+        },
+      },{
+        id: 'social-github',
+        title: 'GitHub',
+        section: 'Socials',
+        handler: () => {
+          window.open("https://github.com/tunahanbilgic", "_blank");
+        },
+      },{
+        id: 'social-rss',
+        title: 'RSS Feed',
+        section: 'Socials',
+        handler: () => {
+          window.open("/feed.xml", "_blank");
+        },
+      },{
+        id: 'social-custom_social',
+        title: 'Custom_social',
+        section: 'Socials',
+        handler: () => {
+          window.open("https://www.kodlamaogreniyorum.com/", "_blank");
+        },
+      },{
+      id: 'light-theme',
+      title: 'Change theme to light',
+      description: 'Change the theme of the site to Light',
+      section: 'Theme',
+      handler: () => {
+        setThemeSetting("light");
+      },
+    },
+    {
+      id: 'dark-theme',
+      title: 'Change theme to dark',
+      description: 'Change the theme of the site to Dark',
+      section: 'Theme',
+      handler: () => {
+        setThemeSetting("dark");
+      },
+    },
+    {
+      id: 'system-theme',
+      title: 'Use system default theme',
+      description: 'Change the theme of the site to System Default',
+      section: 'Theme',
+      handler: () => {
+        setThemeSetting("system");
+      },
+    },];
+
+</script> <script src="/assets/al_search/js/shortcut-key.js"></script> </body> </html>
