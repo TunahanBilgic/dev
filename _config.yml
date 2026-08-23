@@ -308,7 +308,16 @@ defaults:
       path: "assets"
     values:
       sitemap: false
+  - scope:
+      path: "_posts/kod/matlab"
+    values:
+      permalink: /kod/matlab/:title/
 
+  - scope:
+      path: "_posts/kod/python"
+    values:
+      permalink: /kod/python/:title/
+  
 sass:
   style: compressed
 
