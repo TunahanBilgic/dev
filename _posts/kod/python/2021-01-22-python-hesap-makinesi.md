@@ -3,8 +3,9 @@ layout: post
 title: Python Hesap Makinesi Programı
 date: 2021-01-22 09:58:00
 description: Python'da “while” döngüsünü ve “if-elif” koşul deyimini kullanarak dört işlem yapan hesap makinesi programı
-tags: code python hesap makinesi
 categories: python-ornek-uygulamalar
+tags: code python hesap makinesi
+
 ---
 
 Bu yazımızda, Python’da [“while” döngüsünü](https://www.kodlamaogreniyorum.com/python-while-dongusu/) ve [“if-elif” koşul deyimini](https://www.kodlamaogreniyorum.com/python-if-kosul-deyimi/) kullanarak dört işlem yapan hesap makinesi programı oluşturacağız. Daha önceki yazılarda bu yapıları açıklamıştık. Konuda eksiğiniz varsa inceleyebilirsiniz. 
