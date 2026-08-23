@@ -311,12 +311,12 @@ defaults:
   - scope:
       path: "_posts/kod/matlab"
     values:
-      permalink: /kod/matlab/:title/
+      permalink: /kod/:title/
 
   - scope:
       path: "_posts/kod/python"
     values:
-      permalink: /kod/python/:title/
+      permalink: /kod/:title/
   
 sass:
   style: compressed
@@ -357,8 +357,8 @@ jekyll-archives:
   books:
     enabled: [year, tags, categories] # enables year, tag and category archives (remove if you need to disable one of them).
 
-display_tags: ["formatting", "images", "links", "math", "code", "blockquotes"] # these tags will be displayed on the front page of your blog
-display_categories: ["external-services"] # these categories will be displayed on the front page of your blog
+display_tags: ["python", "matlab", "or", "pbi", "etl", "data"] # these tags will be displayed on the front page of your blog
+display_categories: ["python-ornek-uygulamalar","matlab-ornek-uygulamalar"] # these categories will be displayed on the front page of your blog
 
 # -----------------------------------------------------------------------------
 # Jekyll Scholar
