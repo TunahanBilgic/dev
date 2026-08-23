@@ -48,7 +48,9 @@ while islem ~= "="
 end
 ```
 
-![](/assets/kod/matlab/matlab77.webp){: style="width: 125%;" }
+<div class="col-sm-6 mx-auto p-0">
+  {% include figure.liquid path="assets/kod/matlab/matlab77.webp" class="img-fluid rounded z-depth-1" zoomable=true %}
+</div>
 
 Oluşturduğumuz programda, program hesaplamaya başlamadan önce kullanıcıya işlemler ile ilgili bilgi verdik. Ayrıca yaptığımız ufak eklemeler sayesinde, kullanıcı yapmak istediği işlemi hem operatör(“+”, “-“, “*” veya “/”) aracılığıyla hem de yazarak yapabilme seçeneğine sahip oldu.
 
