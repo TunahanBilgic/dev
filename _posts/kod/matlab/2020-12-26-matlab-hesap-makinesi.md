@@ -3,8 +3,12 @@ layout: post
 title: Matlab Hesap Makinesi Programı
 date: 2020-12-26 19:32:00
 description: Matlab'da dört işlem yapan hesap makinesi programı
-tags: code matlab switch case hesap makinesi
 categories: matlab-ornek-uygulamalar
+tags:  
+    - switch
+    - case
+    - hesap makinesi 
+    - matlab
 ---
 
 Bu yazımızda, MATLAB’da “switch – case” yapısını kullanarak dört işlem yapan hesap makinesi programı oluşturacağız. [Bir önceki yazımızda](https://www.kodlamaogreniyorum.com/matlab-switch-case-yapisi/) “switch – case” yapısını açıklamıştık. Konuda eksiğiniz varsa inceleyebilirsiniz. 
