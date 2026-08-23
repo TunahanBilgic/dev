@@ -1,0 +1,383 @@
+<!DOCTYPE html> <html lang="en"> <head> <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"> <meta charset="utf-8"> <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"> <meta http-equiv="X-UA-Compatible" content="IE=edge"> <title> MATLAB “while” Döngüsü | Tunahan Bilgiç | Data Analyst </title> <meta name="author" content="Tunahan Bilgiç"> <meta name="description" content="matlab-kosul-ve-donguler"> <meta name="keywords" content="data,data analyst,tunahan, bilgiç,tunahan bilgiç, portfolio-website"> <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https:; style-src 'self' 'unsafe-inline' https:; img-src 'self' data: https:; font-src 'self' data: https:; media-src 'self' https:; frame-src 'self' https:; connect-src 'self' https:;"> <style>
+  :root {
+    --max-content-width: 930px;
+  }
+</style> <link rel="stylesheet" href="/assets/css/tailwind.css?v=50c64c15cbb9fd1ce6056fdb8bcb4b62"> <link defer rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@7.2.0/css/all.min.css" integrity="sha256-MVopmdyC2tYTiJ8wlktf0uh0v4NgT+vNdyVFepi7Q0c=" crossorigin="anonymous"> <link defer rel="stylesheet" href="https://cdn.jsdelivr.net/npm/academicons@1.9.5/css/academicons.min.css" integrity="sha256-SzrCOBJbGVFMahewkgjwnApaV2+av1DwMAA+/QGLyZw=" crossorigin="anonymous"> <link defer rel="stylesheet" href="https://cdn.jsdelivr.net/npm/scholar-icons@1.0.3/css/scholar-icons.css" integrity="sha256-VY3hHVj/hNX3fYG6wtbA6TcKJQl7+FthzGSyIB64klY=" crossorigin="anonymous"> <link defer rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:100,300,400,500,700|Material+Icons&amp;display=swap"> <link defer rel="stylesheet" href="/assets/css/jekyll-pygments-themes-github.css?v=591dab5a4e56573bf4ef7fd332894c99" media="" id="highlight_theme_light"> <link rel="shortcut icon" href="/assets/img/favicon.ico?v=bd13932341e9943507e07aa41cf2321a"> <link rel="stylesheet" href="/assets/css/main.css?v=3116ba77db9ee1581d05bb3e86fbf7f1"> <link rel="canonical" href="https://tunahanbilgic.dev/blog/2020/matlab-while-dongusu/"> <script src="/assets/js/theme.js?v=5286c3e4c334d0ecb8fc0c40ff4fa7ec"></script> <link defer rel="stylesheet" href="/assets/css/jekyll-pygments-themes-native.css?v=5847e5ed4a4568527aa6cfab446049ca" media="none" id="highlight_theme_dark"> <script>
+    initTheme();
+  </script> </head> <body class="fixed-top-nav "> <header> <nav id="navbar" class="navbar navbar-light navbar-expand-sm fixed-top" role="navigation"> <div class="container"> <a class="navbar-brand title font-weight-lighter" href="/"> Tunahan Bilgiç | Data Analyst </a> <button class="navbar-toggler collapsed navbar-toggler-main" type="button" data-nav-toggle="navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation"> <span class="sr-only">Toggle navigation</span> <span class="icon-bar top-bar"></span> <span class="icon-bar middle-bar"></span> <span class="icon-bar bottom-bar"></span> </button> <div class="collapse navbar-collapse navbar-collapse-main" id="navbarNav"> <ul class="navbar-nav navbar-menu-list flex-nowrap"> <li class="nav-item "> <a class="nav-link" href="/">Home </a> </li> <li class="nav-item "> <a class="nav-link" href="/portfolio/">Portfolio </a> </li> <li class="nav-item "> <a class="nav-link" href="/cv/">CV </a> </li> <li class="nav-item "> <a class="nav-link" href="/github/">Github </a> </li> <li class="nav-item dropdown "> <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-nav-dropdown-toggle="true" aria-haspopup="true" aria-expanded="false">Projects </a> <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown"> <a class="dropdown-item " href="/portfolio/">PBI</a> <div class="dropdown-divider"></div> <a class="dropdown-item " href="/portfolio/">OR</a> <div class="dropdown-divider"></div> <a class="dropdown-item " href="/kod/">Kodlama Öğreniyorum</a> </div> </li> <li class="nav-item"> <button id="search-toggle" type="button" title="Search" aria-label="Open search"> <span class="nav-link">ctrl k <i class="fa-solid fa-magnifying-glass"></i></span> </button> </li> <li class="toggle-container"> <button id="light-toggle" type="button" title="Change theme" aria-label="Change color theme"> <i class="fa-half-sun-moon" id="light-toggle-system"></i> <i class="fa-solid fa-moon" id="light-toggle-dark"></i> <i class="fa-solid fa-sun" id="light-toggle-light"></i> </button> </li> </ul> </div> </div> </nav> <progress id="progress" value="0"> <div class="progress-container"> <span class="progress-bar"></span> </div> </progress> </header> <div class="container mt-5" role="main"> <div class="post"> <header class="post-header"> <h1 class="post-title">MATLAB “while” Döngüsü</h1> <p class="post-meta"> Created on March 16, 2020 </p> <p class="post-tags"> <a href="/blog/2020"> <i class="fa-solid fa-calendar fa-sm"></i> 2020 </a>   ·   <a href="/blog/tag/d%C3%B6ng%C3%BC"> <i class="fa-solid fa-hashtag fa-sm"></i> döngü</a>   <a href="/blog/tag/while"> <i class="fa-solid fa-hashtag fa-sm"></i> while</a>   <a href="/blog/tag/matlab"> <i class="fa-solid fa-hashtag fa-sm"></i> matlab</a>   ·   <a href="/blog/category/matlab-kosul-ve-donguler"> <i class="fa-solid fa-tag fa-sm"></i> matlab-kosul-ve-donguler</a> </p> </header> <article class="post-content"> <div id="markdown-content"> <p>Bir önceki <a href="https://www.kodlamaogreniyorum.com/matlab-for-dongusu/" rel="external nofollow noopener" target="_blank">yazımızda</a> “for” döngüsünden bahsetmiştik. Bizim belirlediğimiz sayıda tekrarlama yapan döngü, “for” döngüsü; belirli bir koşul sağlandığı sürece, sürekli tekrarlama yapan döngü ise “while” döngüsü olduğunu belirtmiştik. Bu yazımızda “while” döngüsüne giriş yapacağız.</p> <p>“while” döngüsü için bir koşul tanımlanır. Bu koşulun değeri “True”(Doğru) olduğu sürece döngü sürekli tekrarlanır. Bu nedenle “while” döngüsüne sonsuz döngü de denilir. Döngünün akış diyagramı(üstüne tıklayarak açabilirsiniz):</p> <p><img src="/assets/kod/matlab/matlab30.webp" alt=""></p> <p>“while” döngüsünün nasıl kullanıldığına geçelim:</p> <div class="language-matlab highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">while</span> <span class="c1">%koşul</span>
+     <span class="c1">%işlemler</span>
+<span class="k">end</span>
+</code></pre></div></div> <div class="language-matlab highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">a</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+<span class="k">while</span> <span class="n">a</span> <span class="o">&lt;</span> <span class="mi">6</span>
+    <span class="nb">disp</span><span class="p">(</span><span class="n">a</span><span class="p">);</span>
+    <span class="n">a</span> <span class="o">=</span> <span class="n">a</span> <span class="o">+</span> <span class="mi">1</span><span class="p">;</span>
+<span class="k">end</span>
+</code></pre></div></div> <p><img src="/assets/kod/matlab/matlab31.png" alt=""></p> <blockquote> <ul> <li>Eğer döngü sonsuz tekrara girdiyse ve program sonlanmıyorsa, “ctrl + c” kısayol tuşuyla programı sonlandırabilirsiniz.</li> </ul> </blockquote> <p>Yukarıda belirttiğimiz gibi, koşulun değeri “True” olduğu sürece “while” döngüsü aktiftir. İkili(binary) sayı tabanında, “True” değerinin karşılığının 1 olduğunu biliyoruz. “while” teriminin yanına direkt 1 yazarak döngüyü aktif edebiliriz:</p> <div class="language-matlab highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">sayac</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+<span class="k">while</span> <span class="mi">1</span>
+   <span class="nb">disp</span><span class="p">(</span><span class="n">sayac</span><span class="p">);</span>
+   <span class="n">sayac</span> <span class="o">=</span> <span class="n">sayac</span> <span class="o">+</span> <span class="mi">1</span><span class="p">;</span>
+   <span class="k">if</span> <span class="n">sayac</span> <span class="o">&gt;</span> <span class="mi">5</span>
+       <span class="k">break</span>
+   <span class="k">end</span>
+<span class="k">end</span>
+</code></pre></div></div> <p><img src="/assets/kod/matlab/matlab31.png" alt=""></p> <blockquote> <p>“break” terimi döngüyü durdurmak için kullanılmıştır. İlerleyen zamanlarda, “break” ve “continue” terimleri ile ilgili yazımız olacak.</p> </blockquote> <p>Bir örnek ile konuyu pekiştirelim. <a href="https://www.kodlamaogreniyorum.com/matlab-if-kosul-deyimi/" rel="external nofollow noopener" target="_blank">“if” koşul deyimi yazımızda</a> sayı tahmin oyunu yapmıştık. O örnekte kendimiz bir sayı belirliyor, kullanıcıya tek tahmin hakkı sunuyorduk. O örneği, bilgisayarın kendi rastgele sayı belirleyecek ve kullanıcı doğru bilene kadar tahmin etmeye devam edecek şekilde güncelleyelim:</p> <div class="language-matlab highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">%kodlamaogreniyorum.com, 2020</span>
+<span class="n">sayi</span> <span class="o">=</span> <span class="nb">randi</span><span class="p">(</span><span class="mi">9</span><span class="p">);</span> <span class="c1">% rastgele sayı oluşturma</span>
+<span class="n">tahmin</span> <span class="o">=</span> <span class="mi">10</span><span class="p">;</span>
+<span class="k">while</span> <span class="n">sayi</span> <span class="o">~=</span> <span class="n">tahmin</span>
+    <span class="n">tahmin</span> <span class="o">=</span> <span class="nb">input</span><span class="p">(</span><span class="s1">'1-9 Arası Sayı Tahmin Edin: '</span><span class="p">);</span>
+    <span class="k">if</span> <span class="n">sayi</span> <span class="o">~=</span> <span class="n">tahmin</span>
+        <span class="nb">fprintf</span><span class="p">(</span><span class="s1">'Yanlış tahmin ettiniz.\n'</span><span class="p">);</span>
+    <span class="k">else</span>
+        <span class="nb">fprintf</span><span class="p">(</span><span class="s1">'Doğru tahmin ettiniz.\n'</span><span class="p">);</span>
+    <span class="k">end</span>
+<span class="k">end</span>
+</code></pre></div></div> <p>“randi(9)” komutu ile “randi()” fonksiyonunun 1 ile 9 arasında sayı üretmesini sağladık. “while” döngüsünü aktif edebilmek için belirlediğimiz sayı aralığından farklı bir değeri “tahmin” değişkenine atadık. “sayı ~= tahmin” koşulu sayesinde kullanıcı doğru tahminde bulunana kadar döngü tekrarlamaya devam edecektir. Kullanıcının sürekli tahminde bulunabilmesi için “input()” fonksiyonunu döngünün içine yazmayı unutmayalım.</p> <p><img src="/assets/kod/matlab/matlab33.png" alt=""></p> <p><img src="/assets/kod/matlab/matlab34.png" alt=""></p> <p>Bu yazımızda “while” döngüsüne kısa bir giriş yapmış olduk. Bir sonraki yazımız “break” ve “continue” terimleri ile ilgili olacak.</p> <p>Bütün <strong>MATLAB kodlarına</strong> Github sayfam aracılığı ile erişebilirsiniz. Github sayfamın linkine aşağıdan ulaşabilirsiniz. Görüşmek üzere!</p> <p>Github: <a href="https://github.com/TunahanBilgic/kodlamaogreniyorum/tree/main/matlab" rel="external nofollow noopener" target="_blank">Github MATLAB</a></p> <p>Sitemize destek olmak isteyen sponsorlar için link: <a href="https://patreon.com/tunahanbilgic" rel="external nofollow noopener" target="_blank">Patreon</a></p> </div> </article> <br> <hr> <br> <h2 class="text-3xl font-semibold mb-4 mt-12">Enjoy Reading This Article?</h2> <p class="mb-2">Here are some more articles you might like to read next:</p> <ul class="list-disc pl-7 my-3 space-y-2 marker:text-[var(--global-theme-color)]"> <li class="leading-relaxed"> <a class="underline decoration-1 hover:text-[var(--global-hover-color)]" href="/blog/2021/python-hesap-makinesi/">Python Hesap Makinesi Programı</a> </li> <li class="leading-relaxed"> <a class="underline decoration-1 hover:text-[var(--global-hover-color)]" href="/blog/2020/matlab-hesap-makinesi/">Matlab Hesap Makinesi Programı</a> </li> <li class="leading-relaxed"> <a class="underline decoration-1 hover:text-[var(--global-hover-color)]" href="/blog/2020/matlab-switch-case-yapisi/">MATLAB Switch – Case Yapısı</a> </li> <li class="leading-relaxed"> <a class="underline decoration-1 hover:text-[var(--global-hover-color)]" href="/blog/2020/matlab-rastgele-sayi-uretme/">MATLAB Rastgele Sayı Üretme (rand, randi, randn)</a> </li> <li class="leading-relaxed"> <a class="underline decoration-1 hover:text-[var(--global-hover-color)]" href="/blog/2020/matlab-excele-veri-aktarma/">MATLAB Excel’e Veri Aktarma</a> </li> <li class="leading-relaxed"> <a class="underline decoration-1 hover:text-[var(--global-hover-color)]" href="/blog/2020/matlab-gantt-grafigi-olusturma/">MATLAB Gantt Grafiği Oluşturma</a> </li> <li class="leading-relaxed"> <a class="underline decoration-1 hover:text-[var(--global-hover-color)]" href="/blog/2020/matlab-excelden-veri-aktarma/">MATLAB Excel’den Veri Aktarma</a> </li> <li class="leading-relaxed"> <a class="underline decoration-1 hover:text-[var(--global-hover-color)]" href="/blog/2020/matlab-ile-ekok-ve-ebob-bulma/">MATLAB ile EKOK ve EBOB Bulma</a> </li> <li class="leading-relaxed"> <a class="underline decoration-1 hover:text-[var(--global-hover-color)]" href="/blog/2020/matlab-ile-ortalama-hesaplama/">MATLAB ile Ortalama Hesaplama (Aritmetik, Geometrik, Harmonik)</a> </li> <li class="leading-relaxed"> <a class="underline decoration-1 hover:text-[var(--global-hover-color)]" href="/blog/2020/matlab-for-dongusu/">MATLAB “for” Döngüsü</a> </li> </ul> </div> </div> <footer class="fixed-bottom" role="contentinfo"> <div class="container mt-0"> © Copyright 2026 Tunahan Bilgiç. Powered by <a href="https://jekyllrb.com/" target="_blank" rel="external nofollow noopener">Jekyll</a> with <a href="https://github.com/alshedivat/al-folio" rel="external nofollow noopener" target="_blank">al-folio</a> theme. Hosted by <a href="https://pages.github.com/" target="_blank" rel="external nofollow noopener">GitHub Pages</a>. Last updated: August 23, 2026. </div> </footer> <script>
+  window.alFolio = {
+    compatBootstrap: false
+  };
+</script> <script src="/assets/js/nav-toggle.js?v=141bd79a73ebc0f0b6ea58e440ae79fc"></script> <script defer src="https://cdn.jsdelivr.net/npm/masonry-layout@4.2.2/dist/masonry.pkgd.min.js" integrity="sha256-Nn1q/fx0H7SNLZMQ5Hw5JLaTRZp0yILA/FRexe19VdI=" crossorigin="anonymous"></script> <script defer src="https://cdn.jsdelivr.net/npm/imagesloaded@5.0.0/imagesloaded.pkgd.min.js" integrity="sha256-htrLFfZJ6v5udOG+3kNLINIKh2gvoKqwEhHYfTTMICc=" crossorigin="anonymous"></script> <script defer src="/assets/js/masonry.js?v=e49affc7bd2646f6acdad1dbe02c2359" type="text/javascript"></script> <script defer type="text/javascript" id="MathJax-script" src="https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/tex-mml-chtml.js" integrity="sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI=" crossorigin="anonymous"></script> <script src="/assets/al_math/js/mathjax-setup.js"></script> <script src="/assets/js/tooltips-setup.js?v=fe487e99db6c43751e6e7bdb2d6a0611"></script> <script src="/assets/js/no_defer.js?v=53b1b1a645525975c963ce8bf8bfefcf"></script> <script defer src="/assets/js/common.js?v=87baac90f765f2f3362dcf6aaf312a8a"></script> <script defer src="/assets/js/copy_code.js?v=c8a01c11a92744d44b093fc3bda915df" type="text/javascript"></script> <script defer src="/assets/js/jupyter_new_tab.js?v=896d254890d9b47f0281f63bfccf0dee"></script> <script async src="https://d1bxh8uas1mnw7.cloudfront.net/assets/embed.js"></script> <script async src="https://badge.dimensions.ai/badge.js"></script> <script async src="https://www.googletagmanager.com/gtag/js?id=G-JMX8XJEMM1"></script> <script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag() {
+    window.dataLayer.push(arguments);
+  }
+  gtag("js", new Date());
+  gtag("config", "G-JMX8XJEMM1");
+</script> <script defer src="https://cdn.jsdelivr.net/npm/medium-zoom@1.1.0/dist/medium-zoom.min.js" integrity="sha256-ZgMyDAIYDYGxbcpJcfUnYwNevG/xi9OHKaR/8GK+jWc=" crossorigin="anonymous"></script> <script defer src="/assets/al_img_tools/js/zoom.js"></script> <script defer src="/assets/js/progress-bar.js?v=499464c5c63ced6cf7ad62509f1e2610" type="text/javascript"></script> <script src="https://cdn.jsdelivr.net/npm/vanilla-back-to-top@7.2.1/dist/vanilla-back-to-top.min.js" integrity="sha256-uMJJ3EoTyfRBoTbR+lrfu1uRQ87RZG8AR3cVNuQVeFg=" crossorigin="anonymous"></script> <script>
+    addBackToTop();
+  </script> <script type="module" src="/assets/al_search/js/search/ninja-keys.min.js"></script> <ninja-keys hidebreadcrumbs noautoloadmdicons placeholder="Type to start searching"></ninja-keys> <script src="/assets/al_search/js/search-setup.js"></script> <script>
+// get the ninja-keys element
+const ninja = document.querySelector('ninja-keys');
+
+// add the home and posts menu items
+ninja.data = [{
+    id: "nav-home",
+    title: "Home",
+    section: "Navigation",
+    handler: () => {
+      window.location.href = "/";
+    },
+  },{id: "nav-portfolio",
+          title: "Portfolio",
+          description: "My Portfolio",
+          section: "Navigation",
+          handler: () => {
+            window.location.href = "/portfolio/";
+          },
+        },{id: "nav-cv",
+          title: "CV",
+          description: "Here&#39;s a short summary of my background, please feel free to contact me for detailed information.",
+          section: "Navigation",
+          handler: () => {
+            window.location.href = "/cv/";
+          },
+        },{id: "nav-github",
+          title: "Github",
+          description: "",
+          section: "Navigation",
+          handler: () => {
+            window.location.href = "/github/";
+          },
+        },{id: "dropdown-pbi",
+              title: "PBI",
+              description: "",
+              section: "Dropdown",
+              handler: () => {
+                window.location.href = "/portfolio/";
+              },
+            },{id: "dropdown-or",
+              title: "OR",
+              description: "",
+              section: "Dropdown",
+              handler: () => {
+                window.location.href = "/portfolio/";
+              },
+            },{id: "dropdown-kodlama-öğreniyorum",
+              title: "Kodlama Öğreniyorum",
+              description: "",
+              section: "Dropdown",
+              handler: () => {
+                window.location.href = "/kod/";
+              },
+            },{id: "post-python-hesap-makinesi-programı",
+        
+          title: "Python Hesap Makinesi Programı",
+        
+        description: "Python&#39;da “while” döngüsünü ve “if-elif” koşul deyimini kullanarak dört işlem yapan hesap makinesi programı",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/blog/2021/python-hesap-makinesi/";
+          
+        },
+      },{id: "post-matlab-hesap-makinesi-programı",
+        
+          title: "Matlab Hesap Makinesi Programı",
+        
+        description: "Matlab&#39;da dört işlem yapan hesap makinesi programı",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/blog/2020/matlab-hesap-makinesi/";
+          
+        },
+      },{id: "post-matlab-switch-case-yapısı",
+        
+          title: "MATLAB Switch – Case Yapısı",
+        
+        description: "matlab-kosul-ve-donguler",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/blog/2020/matlab-switch-case-yapisi/";
+          
+        },
+      },{id: "post-matlab-rastgele-sayı-üretme-rand-randi-randn",
+        
+          title: "MATLAB Rastgele Sayı Üretme (rand, randi, randn)",
+        
+        description: "matlab-fonksiyonlar",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/blog/2020/matlab-rastgele-sayi-uretme/";
+          
+        },
+      },{id: "post-matlab-excel-e-veri-aktarma",
+        
+          title: "MATLAB Excel’e Veri Aktarma",
+        
+        description: "matlab-veri-islemleri",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/blog/2020/matlab-excele-veri-aktarma/";
+          
+        },
+      },{id: "post-matlab-gantt-grafiği-oluşturma",
+        
+          title: "MATLAB Gantt Grafiği Oluşturma",
+        
+        description: "matlab-ornek-uygulamalar",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/blog/2020/matlab-gantt-grafigi-olusturma/";
+          
+        },
+      },{id: "post-matlab-excel-den-veri-aktarma",
+        
+          title: "MATLAB Excel’den Veri Aktarma",
+        
+        description: "matlab-veri-islemleri",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/blog/2020/matlab-excelden-veri-aktarma/";
+          
+        },
+      },{id: "post-matlab-ile-ekok-ve-ebob-bulma",
+        
+          title: "MATLAB ile EKOK ve EBOB Bulma",
+        
+        description: "matlab-ornek-uygulamalar",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/blog/2020/matlab-ile-ekok-ve-ebob-bulma/";
+          
+        },
+      },{id: "post-matlab-ile-ortalama-hesaplama-aritmetik-geometrik-harmonik",
+        
+          title: "MATLAB ile Ortalama Hesaplama (Aritmetik, Geometrik, Harmonik)",
+        
+        description: "matlab-ornek-uygulamalar",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/blog/2020/matlab-ile-ortalama-hesaplama/";
+          
+        },
+      },{id: "post-matlab-while-döngüsü",
+        
+          title: "MATLAB “while” Döngüsü",
+        
+        description: "matlab-kosul-ve-donguler",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/blog/2020/matlab-while-dongusu/";
+          
+        },
+      },{id: "post-matlab-for-döngüsü",
+        
+          title: "MATLAB “for” Döngüsü",
+        
+        description: "matlab-kosul-ve-donguler",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/blog/2020/matlab-for-dongusu/";
+          
+        },
+      },{id: "post-matlab-if-koşul-deyimi",
+        
+          title: "MATLAB “if” Koşul Deyimi",
+        
+        description: "matlab-kosul-ve-donguler",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/blog/2020/matlab-if-kosul-deyimi/";
+          
+        },
+      },{id: "post-matlab-kabarcık-sıralama-bubble-sorting-algoritması",
+        
+          title: "MATLAB Kabarcık Sıralama ( Bubble Sorting) Algoritması",
+        
+        description: "matlab-algoritmalar",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/blog/2020/matlab-kabarcik-siralama-algoritmasi/";
+          
+        },
+      },{id: "post-matlab-seçerek-sıralama-selection-sorting-algoritması",
+        
+          title: "MATLAB Seçerek Sıralama (Selection Sorting) Algoritması",
+        
+        description: "matlab-algoritmalar",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/blog/2020/matlab-secerek-siralama-algoritmasi/";
+          
+        },
+      },{id: "post-matlab-klavyeden-veri-alma",
+        
+          title: "MATLAB Klavyeden Veri Alma",
+        
+        description: "matlab-temel-bilgiler",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/blog/2019/matlab-klavyeden-veri-alma/";
+          
+        },
+      },{id: "post-matlab-klavyeden-veri-alma",
+        
+          title: "MATLAB Klavyeden Veri Alma",
+        
+        description: "matlab-temel-bilgiler",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/blog/2019/matlab-klavyeden-veri-alma-copy-6/";
+          
+        },
+      },{id: "post-matlab-komut-dosyaları-script-files",
+        
+          title: "MATLAB Komut Dosyaları(Script Files)",
+        
+        description: "matlab-temel-bilgiler",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/blog/2019/matlab-script-files/";
+          
+        },
+      },{id: "post-matlab-da-değişken-tanımlama",
+        
+          title: "MATLAB’da Değişken Tanımlama",
+        
+        description: "Matlab Temel Bilgiler",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/blog/2019/matlabda-degisken-tanimlama/";
+          
+        },
+      },{id: "post-matlab-ile-programlamaya-giriş",
+        
+          title: "Matlab ile Programlamaya Giriş",
+        
+        description: "Matlab Temel Bilgiler",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/blog/2019/matlab-ile-programlamaya-giris/";
+          
+        },
+      },{id: "projects-hr-report",
+          title: 'HR Report',
+          description: "Power BI Dashboards for HR Department",
+          section: "Projects",handler: () => {
+              window.location.href = "/portfolio/pbi_hr/";
+            },},{id: "projects-sales-report",
+          title: 'SALES Report',
+          description: "Power BI Dashboards for Sales Department",
+          section: "Projects",handler: () => {
+              window.location.href = "/portfolio/pbi_sales/";
+            },},{
+        id: 'social-email',
+        title: 'email',
+        section: 'Socials',
+        handler: () => {
+          window.open("mailto:%6D%61%69%6C@%74%75%6E%61%68%61%6E%62%69%6C%67%69%63.%64%65%76", "_blank");
+        },
+      },{
+        id: 'social-linkedin',
+        title: 'LinkedIn',
+        section: 'Socials',
+        handler: () => {
+          window.open("https://www.linkedin.com/in/tunahan-bilgiç", "_blank");
+        },
+      },{
+        id: 'social-github',
+        title: 'GitHub',
+        section: 'Socials',
+        handler: () => {
+          window.open("https://github.com/tunahanbilgic", "_blank");
+        },
+      },{
+        id: 'social-rss',
+        title: 'RSS Feed',
+        section: 'Socials',
+        handler: () => {
+          window.open("/feed.xml", "_blank");
+        },
+      },{
+        id: 'social-custom_social',
+        title: 'Custom_social',
+        section: 'Socials',
+        handler: () => {
+          window.open("https://www.kodlamaogreniyorum.com/", "_blank");
+        },
+      },{
+      id: 'light-theme',
+      title: 'Change theme to light',
+      description: 'Change the theme of the site to Light',
+      section: 'Theme',
+      handler: () => {
+        setThemeSetting("light");
+      },
+    },
+    {
+      id: 'dark-theme',
+      title: 'Change theme to dark',
+      description: 'Change the theme of the site to Dark',
+      section: 'Theme',
+      handler: () => {
+        setThemeSetting("dark");
+      },
+    },
+    {
+      id: 'system-theme',
+      title: 'Use system default theme',
+      description: 'Change the theme of the site to System Default',
+      section: 'Theme',
+      handler: () => {
+        setThemeSetting("system");
+      },
+    },];
+
+</script> <script src="/assets/al_search/js/shortcut-key.js"></script> </body> </html>
