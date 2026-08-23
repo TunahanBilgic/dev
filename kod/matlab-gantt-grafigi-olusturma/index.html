@@ -1,0 +1,565 @@
+<!DOCTYPE html> <html lang="en"> <head> <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"> <meta charset="utf-8"> <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"> <meta http-equiv="X-UA-Compatible" content="IE=edge"> <title> MATLAB Gantt Grafiği Oluşturma | Tunahan Bilgiç | Data Analyst </title> <meta name="author" content="Tunahan Bilgiç"> <meta name="description" content="matlab-ornek-uygulamalar"> <meta name="keywords" content="data,data analyst,tunahan, bilgiç,tunahan bilgiç, portfolio-website"> <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https:; style-src 'self' 'unsafe-inline' https:; img-src 'self' data: https:; font-src 'self' data: https:; media-src 'self' https:; frame-src 'self' https:; connect-src 'self' https:;"> <style>
+  :root {
+    --max-content-width: 930px;
+  }
+</style> <link rel="stylesheet" href="/assets/css/tailwind.css?v=50c64c15cbb9fd1ce6056fdb8bcb4b62"> <link defer rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@7.2.0/css/all.min.css" integrity="sha256-MVopmdyC2tYTiJ8wlktf0uh0v4NgT+vNdyVFepi7Q0c=" crossorigin="anonymous"> <link defer rel="stylesheet" href="https://cdn.jsdelivr.net/npm/academicons@1.9.5/css/academicons.min.css" integrity="sha256-SzrCOBJbGVFMahewkgjwnApaV2+av1DwMAA+/QGLyZw=" crossorigin="anonymous"> <link defer rel="stylesheet" href="https://cdn.jsdelivr.net/npm/scholar-icons@1.0.3/css/scholar-icons.css" integrity="sha256-VY3hHVj/hNX3fYG6wtbA6TcKJQl7+FthzGSyIB64klY=" crossorigin="anonymous"> <link defer rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:100,300,400,500,700|Material+Icons&amp;display=swap"> <link defer rel="stylesheet" href="/assets/css/jekyll-pygments-themes-github.css?v=591dab5a4e56573bf4ef7fd332894c99" media="" id="highlight_theme_light"> <link rel="shortcut icon" href="/assets/img/favicon.ico?v=bd13932341e9943507e07aa41cf2321a"> <link rel="stylesheet" href="/assets/css/main.css?v=3116ba77db9ee1581d05bb3e86fbf7f1"> <link rel="canonical" href="https://tunahanbilgic.dev/kod/matlab-gantt-grafigi-olusturma/"> <script src="/assets/js/theme.js?v=5286c3e4c334d0ecb8fc0c40ff4fa7ec"></script> <link defer rel="stylesheet" href="/assets/css/jekyll-pygments-themes-native.css?v=5847e5ed4a4568527aa6cfab446049ca" media="none" id="highlight_theme_dark"> <script>
+    initTheme();
+  </script> </head> <body class="fixed-top-nav "> <header> <nav id="navbar" class="navbar navbar-light navbar-expand-sm fixed-top" role="navigation"> <div class="container"> <a class="navbar-brand title font-weight-lighter" href="/"> Tunahan Bilgiç | Data Analyst </a> <button class="navbar-toggler collapsed navbar-toggler-main" type="button" data-nav-toggle="navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation"> <span class="sr-only">Toggle navigation</span> <span class="icon-bar top-bar"></span> <span class="icon-bar middle-bar"></span> <span class="icon-bar bottom-bar"></span> </button> <div class="collapse navbar-collapse navbar-collapse-main" id="navbarNav"> <ul class="navbar-nav navbar-menu-list flex-nowrap"> <li class="nav-item "> <a class="nav-link" href="/">Home </a> </li> <li class="nav-item "> <a class="nav-link" href="/portfolio/">Portfolio </a> </li> <li class="nav-item "> <a class="nav-link" href="/cv/">CV </a> </li> <li class="nav-item "> <a class="nav-link" href="/github/">Github </a> </li> <li class="nav-item dropdown "> <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-nav-dropdown-toggle="true" aria-haspopup="true" aria-expanded="false">Projects </a> <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown"> <a class="dropdown-item " href="/portfolio/">PBI</a> <div class="dropdown-divider"></div> <a class="dropdown-item " href="/portfolio/">OR</a> <div class="dropdown-divider"></div> <a class="dropdown-item " href="/kod/">Kodlama Öğreniyorum</a> </div> </li> <li class="nav-item"> <button id="search-toggle" type="button" title="Search" aria-label="Open search"> <span class="nav-link">ctrl k <i class="fa-solid fa-magnifying-glass"></i></span> </button> </li> <li class="toggle-container"> <button id="light-toggle" type="button" title="Change theme" aria-label="Change color theme"> <i class="fa-half-sun-moon" id="light-toggle-system"></i> <i class="fa-solid fa-moon" id="light-toggle-dark"></i> <i class="fa-solid fa-sun" id="light-toggle-light"></i> </button> </li> </ul> </div> </div> </nav> <progress id="progress" value="0"> <div class="progress-container"> <span class="progress-bar"></span> </div> </progress> </header> <div class="container mt-5" role="main"> <div class="post"> <header class="post-header"> <h1 class="post-title">MATLAB Gantt Grafiği Oluşturma</h1> <p class="post-meta"> Created on December 06, 2020 </p> <p class="post-tags"> <i class="fa-solid fa-calendar fa-sm"></i> 2020   ·   <i class="fa-solid fa-hashtag fa-sm"></i> matlab grafikler   <i class="fa-solid fa-hashtag fa-sm"></i> matlab veri aktarma   <i class="fa-solid fa-hashtag fa-sm"></i> matlab   ·   <i class="fa-solid fa-tag fa-sm"></i> matlab-ornek-uygulamalar </p> </header> <article class="post-content"> <div id="markdown-content"> <p>Bu yazımızda MATLAB kullanarak bir Gantt grafiği oluşturacağız. Gantt grafiği; planlama, proje yönetimi gibi alanlarda sürecin nasıl gittiği hakkında bilgi sahibi olmamızda yardımcı olan bir grafiktir. Gantt grafiği, verileri görselleştirerek daha anlaşılır hale getirmektedir. Biz bu uygulamada bir proje yönetim sürecini ele alacağız. Verilerimiz, proje yönetim süreçlerinin planlanan ve gerçekleşen zamanları olacak. Ayrıca Excel dosyasındaki metinleri de grafik üzerinde isimlendirmede kullanacağız. Verilerimiz bir Excel dosyasında kayıt halinde olacak. <a href="https://www.kodlamaogreniyorum.com/matlab-excelden-veri-aktarma/" rel="external nofollow noopener" target="_blank">MATLAB’a Excel’den veri aktarma</a> yazımızı inceleyerek, veri aktarımı hakkında detaylı bilgiye sahip olabilirsiniz.</p> <p>Öncelikle, Excel dosyasını inceleyelim:</p> <p><img src="/assets/kod/matlab/matlab71.png" alt=""></p> <p>Excel dosyasında bulunan sayılar hafta cinsinden zamanları ifade ediyor. Bununla birlikte, toplamda altı tane olan proje yönetim süreçlerinin isimleri de veri dosyamızın içerisinde yer alıyor. Gantt grafiğini oluşturma mantığımız: “Fikir Belirleme süreci üç hafta sürmüş, ardından üç hafta boyunca da Fikir Analizi süreci yer almış” şeklinde olacak. Kısacası zamanları üst üste ekleyerek grafiği oluşturacağız. Excel dosyasını, kullanıcının kendisinin seçeceği şekilde programımızı kodlamaya başlayalım:</p> <div class="language-matlab highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">excel</span><span class="o">=</span><span class="nb">uigetfile</span><span class="p">(</span><span class="s1">'*xls*'</span><span class="p">);</span>
+<span class="nb">assignin</span><span class="p">(</span><span class="s1">'base'</span><span class="p">,</span><span class="s1">'excel'</span><span class="p">,</span><span class="n">excel</span><span class="p">);</span>
+<span class="p">[</span><span class="n">veri</span><span class="p">,</span><span class="n">metin</span><span class="p">,</span><span class="n">hepsi</span><span class="p">]</span> <span class="o">=</span> <span class="nb">xlsread</span><span class="p">(</span><span class="n">excel</span><span class="p">);</span>
+</code></pre></div></div> <p><img src="/assets/kod/matlab/matlab72.webp" alt=""></p> <p>“uigetfile()” fonksiyonu kullanıcının dosya seçmesi için bir pencere açar. Yazdığımız “<em>xls</em>” uzantısı sayesinde, kullanıcının Excel dosyalarını görmesinde kolaylık sağlıyoruz. “assignin()” fonksiyonu ile Excel dosyamızın “excel” isimli değişkende çalışma alanına kaydedilmesini sağlıyoruz. “xlsread()” fonksiyonu Excel dosyasındaki metinleri hücre olarak değişkene tanımlıyor. Bununla birlikte, Excel dosyasındaki sayısal ifadelerin olduğu yerleri de hücre olarak değişkene tanımlıyor. Metinleri kullanırken zorlanmamak için aşağıdaki kodları ekleyelim:</p> <div class="language-matlab highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">[</span><span class="n">satir</span><span class="p">,</span><span class="n">sutun</span><span class="p">]</span> <span class="o">=</span> <span class="nb">size</span><span class="p">(</span><span class="n">metin</span><span class="p">);</span>
+<span class="n">proje_asama</span><span class="o">=</span><span class="p">[];</span> <span class="c1">%proje aşamaları için</span>
+<span class="n">sure_tipi</span><span class="o">=</span><span class="p">[];</span>
+<span class="k">for</span> <span class="n">i</span><span class="o">=</span><span class="mi">1</span><span class="p">:</span><span class="n">satir</span> <span class="c1">%proje aşamalarını kaydetme</span>
+    <span class="k">if</span> <span class="nb">strlength</span><span class="p">(</span><span class="n">metin</span><span class="p">{</span><span class="n">i</span><span class="p">,</span><span class="mi">1</span><span class="p">})</span> <span class="o">&gt;</span> <span class="mi">0</span>
+        <span class="n">proje_asama</span><span class="o">=</span><span class="p">[</span><span class="n">proje_asama</span><span class="p">;</span> <span class="nb">string</span><span class="p">(</span><span class="n">metin</span><span class="p">{</span><span class="n">i</span><span class="p">,</span><span class="mi">1</span><span class="p">})];</span>
+    <span class="k">end</span>
+<span class="k">end</span>
+<span class="k">for</span> <span class="n">i</span> <span class="o">=</span><span class="mi">1</span><span class="p">:</span><span class="n">sutun</span>
+    <span class="k">if</span> <span class="nb">strlength</span><span class="p">(</span><span class="n">metin</span><span class="p">{</span><span class="mi">1</span><span class="p">,</span><span class="n">i</span><span class="p">})</span> <span class="o">&gt;</span> <span class="mi">0</span>
+        <span class="n">sure_tipi</span> <span class="o">=</span> <span class="p">[</span><span class="n">sure_tipi</span> <span class="nb">string</span><span class="p">(</span><span class="n">metin</span><span class="p">{</span><span class="mi">1</span><span class="p">,</span><span class="n">i</span><span class="p">})];</span>
+    <span class="k">end</span>
+<span class="k">end</span>
+</code></pre></div></div> <p>Grafiğin boyut, isim gibi temel ayarlarını yapalım:</p> <div class="language-matlab highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">ekran_boyutu</span><span class="o">=</span><span class="nb">get</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="s1">'ScreenSize'</span><span class="p">);</span>
+<span class="n">ekran_boyutu</span> <span class="o">=</span> <span class="n">ekran_boyutu</span> <span class="o">*</span> <span class="mf">0.8</span><span class="p">;</span>
+<span class="n">fig</span><span class="o">=</span><span class="nb">figure</span><span class="p">(</span><span class="s1">'Name'</span><span class="p">,</span><span class="s1">'Proje Gantt Grafiği'</span><span class="p">,</span><span class="k">...</span>
+    <span class="s1">'Innerposition'</span><span class="p">,[</span><span class="mi">0</span> <span class="mi">0</span> <span class="n">ekran_boyutu</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span> <span class="n">ekran_boyutu</span><span class="p">(</span><span class="mi">4</span><span class="p">)],</span><span class="k">...</span>
+       <span class="s1">'NumberTitle'</span><span class="p">,</span><span class="s1">'off'</span><span class="p">,</span><span class="s1">'Resize'</span><span class="p">,</span><span class="s1">'off'</span><span class="p">,</span><span class="s1">'MenuBar'</span><span class="p">,</span><span class="s1">'none'</span><span class="p">,</span><span class="s1">'ToolBar'</span><span class="p">,</span><span class="s1">'figure'</span><span class="p">);</span>
+</code></pre></div></div> <p>Gantt grafiğindeki barların uzunluğu süreyi ifade etmekte ve X ekseni ile ilişkilidir. Barların kalınlığı ise Y ekseni ile ilişkilidir. Barların kalınlığını biz belirliyoruz. Ayrıca Y ekseni, proje yönetim aşamalarını temsil etmektedir.</p> <p>Planlanan ve gerçekleşen zamanlar farklı olduğundan ve dolayısıyla farklı koordinatlarda olacağı için ayrı ayrı değişkenlere tanımlama yapmamız gerekiyor:</p> <div class="language-matlab highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">bar</span> <span class="o">=</span> <span class="mi">20</span><span class="p">;</span>    <span class="c1">%bar kalınlık</span>
+<span class="n">x_p</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>      <span class="c1">%başlangıç konumları</span>
+<span class="n">x_g</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+<span class="n">y_p</span> <span class="o">=</span> <span class="n">ekran_boyutu</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span> <span class="o">-</span> <span class="nb">bar</span><span class="p">;</span>
+<span class="n">y_g</span> <span class="o">=</span> <span class="n">y_p</span> <span class="o">-</span> <span class="nb">bar</span> <span class="o">*</span> <span class="mi">2</span><span class="p">;</span>
+</code></pre></div></div> <p>Gantt grafiğinin barlarını “rectangle()” fonksiyonu ile oluşturacağız. “rectangle()” fonksiyonu, kendisine girilen koordinat ve kenar boyutları bilgisine göre dikdörtgen oluşturmaktadır. Grafiğin barını oluşturduktan sonra, “text()” fonksiyonu ile bara, “planlanan” veya “gerçekleşen” yazacağız. Böylelikle zaman ayrımını daha kolay hale getirmiş olacağız. Gerekli kodları ekleyelim:</p> <div class="language-matlab highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">rectangle</span><span class="p">(</span><span class="s1">'Position'</span><span class="p">,[</span><span class="n">x_p</span> <span class="n">y_p</span> <span class="n">veri</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span> <span class="nb">bar</span><span class="p">],</span><span class="s1">'Facecolor'</span><span class="p">,</span><span class="s1">'g'</span><span class="p">)</span>
+<span class="nb">hold</span> <span class="n">on</span>
+<span class="nb">rectangle</span><span class="p">(</span><span class="s1">'Position'</span><span class="p">,[</span><span class="n">x_g</span> <span class="n">y_g</span> <span class="n">veri</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span> <span class="nb">bar</span><span class="p">],</span><span class="s1">'Facecolor'</span><span class="p">,</span><span class="s1">'r'</span><span class="p">)</span>
+<span class="n">y_lab</span><span class="p">{</span><span class="mi">1</span><span class="p">}</span> <span class="o">=</span> <span class="n">proje_asama</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>
+<span class="nb">text</span><span class="p">(</span><span class="n">x_p</span><span class="o">+</span><span class="n">veri</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">)/</span><span class="mi">2</span><span class="p">,</span><span class="n">y_p</span><span class="o">+</span><span class="nb">bar</span><span class="p">/</span><span class="mi">2</span><span class="p">,</span><span class="nb">sprintf</span><span class="p">(</span><span class="s1">'%s'</span><span class="p">,</span><span class="n">sure_tipi</span><span class="p">(</span><span class="mi">1</span><span class="p">)),</span><span class="s1">'HorizontalAlignment'</span><span class="p">,</span><span class="s1">'center'</span><span class="p">,</span><span class="s1">'FontSize'</span><span class="p">,</span><span class="mi">8</span><span class="p">)</span>
+<span class="nb">text</span><span class="p">(</span><span class="n">x_g</span><span class="o">+</span><span class="n">veri</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">)/</span><span class="mi">2</span><span class="p">,</span><span class="n">y_g</span><span class="o">+</span><span class="nb">bar</span><span class="p">/</span><span class="mi">2</span><span class="p">,</span><span class="nb">sprintf</span><span class="p">(</span><span class="s1">'%s'</span><span class="p">,</span><span class="n">sure_tipi</span><span class="p">(</span><span class="mi">2</span><span class="p">)),</span><span class="s1">'HorizontalAlignment'</span><span class="p">,</span><span class="s1">'center'</span><span class="p">,</span><span class="s1">'FontSize'</span><span class="p">,</span><span class="mi">8</span><span class="p">)</span>
+</code></pre></div></div> <p>Bu aşamaya kadar; kullanıcının verileri seçmesini sağladık, grafiğin ayarlarını yaptık ve proje yönetiminin ilk sürecini grafiğe döktük.</p> <p><img src="/assets/kod/matlab/matlab73.webp" alt=""></p> <p>Diğer süreçleri döngü ile grafiğe dökeceğiz. X ve Y eksenindeki gerekli hesaplamaları da dahil ederek kodlamaya devam edelim:</p> <div class="language-matlab highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">for</span> <span class="n">i</span><span class="o">=</span><span class="mi">2</span><span class="p">:</span><span class="nb">length</span><span class="p">(</span><span class="n">veri</span><span class="p">)</span>
+    <span class="n">y_p</span> <span class="o">=</span> <span class="n">y_g</span> <span class="o">-</span> <span class="nb">bar</span><span class="o">*</span><span class="mi">2</span><span class="p">;</span>
+    <span class="n">y_g</span> <span class="o">=</span> <span class="n">y_p</span> <span class="o">-</span> <span class="nb">bar</span> <span class="o">*</span> <span class="mi">2</span><span class="p">;</span>
+    <span class="n">x_p</span> <span class="o">=</span> <span class="n">x_p</span> <span class="o">+</span> <span class="n">veri</span><span class="p">(</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">);</span>
+    <span class="n">x_g</span> <span class="o">=</span> <span class="n">x_g</span> <span class="o">+</span> <span class="n">veri</span><span class="p">(</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">);</span>
+    <span class="c1">%planlanan değerler</span>
+    <span class="nb">rectangle</span><span class="p">(</span><span class="s1">'Position'</span><span class="p">,[</span><span class="n">x_p</span> <span class="n">y_p</span> <span class="n">veri</span><span class="p">(</span><span class="n">i</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span> <span class="nb">bar</span><span class="p">],</span><span class="s1">'Facecolor'</span><span class="p">,</span><span class="s1">'g'</span><span class="p">)</span>
+    <span class="c1">%gerçekleşen değerler</span>
+    <span class="nb">rectangle</span><span class="p">(</span><span class="s1">'Position'</span><span class="p">,[</span><span class="n">x_g</span> <span class="n">y_g</span> <span class="n">veri</span><span class="p">(</span><span class="n">i</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span> <span class="nb">bar</span><span class="p">],</span><span class="s1">'Facecolor'</span><span class="p">,</span><span class="s1">'r'</span><span class="p">)</span>
+    <span class="n">y_lab</span><span class="p">{</span><span class="n">i</span><span class="p">}</span> <span class="o">=</span> <span class="n">proje_asama</span><span class="p">(</span><span class="n">i</span><span class="p">);</span>
+    <span class="nb">plot</span><span class="p">([</span><span class="n">x_g</span> <span class="n">x_g</span><span class="p">],[</span><span class="n">y_g</span><span class="o">+</span><span class="nb">bar</span> <span class="n">y_g</span><span class="o">+</span><span class="nb">bar</span><span class="o">*</span><span class="mi">4</span><span class="p">],</span><span class="s1">'--'</span><span class="p">,</span><span class="s1">'Color'</span><span class="p">,</span><span class="s1">'b'</span><span class="p">)</span>
+    <span class="nb">text</span><span class="p">(</span><span class="n">x_p</span><span class="o">+</span><span class="n">veri</span><span class="p">(</span><span class="n">i</span><span class="p">,</span><span class="mi">1</span><span class="p">)/</span><span class="mi">2</span><span class="p">,</span><span class="n">y_p</span><span class="o">+</span><span class="nb">bar</span><span class="p">/</span><span class="mi">2</span><span class="p">,</span><span class="nb">sprintf</span><span class="p">(</span><span class="s1">'%s'</span><span class="p">,</span><span class="n">sure_tipi</span><span class="p">(</span><span class="mi">1</span><span class="p">)),</span><span class="s1">'HorizontalAlignment'</span><span class="p">,</span><span class="s1">'center'</span><span class="p">,</span><span class="s1">'FontSize'</span><span class="p">,</span><span class="mi">8</span><span class="p">)</span>
+    <span class="nb">text</span><span class="p">(</span><span class="n">x_g</span><span class="o">+</span><span class="n">veri</span><span class="p">(</span><span class="n">i</span><span class="p">,</span><span class="mi">2</span><span class="p">)/</span><span class="mi">2</span><span class="p">,</span><span class="n">y_g</span><span class="o">+</span><span class="nb">bar</span><span class="p">/</span><span class="mi">2</span><span class="p">,</span><span class="nb">sprintf</span><span class="p">(</span><span class="s1">'%s'</span><span class="p">,</span><span class="n">sure_tipi</span><span class="p">(</span><span class="mi">2</span><span class="p">)),</span><span class="s1">'HorizontalAlignment'</span><span class="p">,</span><span class="s1">'center'</span><span class="p">,</span><span class="s1">'FontSize'</span><span class="p">,</span><span class="mi">8</span><span class="p">)</span>
+<span class="k">end</span>
+</code></pre></div></div> <p>Artık son aşamaya geldik. Grafiğin; Y eksenine proje aşamalarını, X eksenine ise haftaları yazdıracağız. Bununla birlikte, grafiğe bir başlık ve renklerin neyi ifade ettiğini anlatan bir bilgi kutusu ekleyelim:</p> <div class="language-matlab highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">set</span><span class="p">(</span><span class="nb">gca</span><span class="p">,</span><span class="s1">'XTick'</span><span class="p">,[</span><span class="mi">0</span><span class="p">:</span><span class="nb">max</span><span class="p">(</span><span class="nb">sum</span><span class="p">(</span><span class="n">veri</span><span class="p">))],</span><span class="s1">'YTick'</span><span class="p">,[</span><span class="n">y_g</span><span class="o">+</span><span class="nb">bar</span><span class="o">+</span><span class="nb">bar</span><span class="p">/</span><span class="mi">2</span><span class="p">:</span><span class="nb">bar</span><span class="o">*</span><span class="mi">4</span><span class="p">:</span><span class="n">ekran_boyutu</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span> <span class="o">-</span> <span class="nb">bar</span><span class="p">]);</span>
+<span class="nb">xlabel</span><span class="p">(</span><span class="s1">'Haftalar'</span><span class="p">,</span><span class="s1">'FontSize'</span><span class="p">,</span><span class="mi">14</span><span class="p">,</span><span class="s1">'FontWeight'</span><span class="p">,</span><span class="s1">'bold'</span><span class="p">,</span><span class="s1">'Color'</span><span class="p">,</span><span class="s1">'r'</span><span class="p">)</span>
+<span class="nb">set</span><span class="p">(</span><span class="nb">gca</span><span class="p">,</span><span class="s1">'YTickLabel'</span><span class="p">,</span><span class="nb">flip</span><span class="p">(</span><span class="n">y_lab</span><span class="p">),</span><span class="s1">'Fontsize'</span><span class="p">,</span><span class="mi">12</span><span class="p">);</span>
+<span class="nb">ylabel</span><span class="p">(</span><span class="s1">'Aşamalar'</span><span class="p">,</span><span class="s1">'FontSize'</span><span class="p">,</span><span class="mi">14</span><span class="p">,</span><span class="s1">'FontWeight'</span><span class="p">,</span><span class="s1">'bold'</span><span class="p">,</span><span class="s1">'Color'</span><span class="p">,</span><span class="s1">'r'</span><span class="p">)</span>
+<span class="nb">set</span><span class="p">(</span><span class="nb">gca</span><span class="p">,</span> <span class="s1">'YGrid'</span><span class="p">,</span> <span class="s1">'off'</span><span class="p">,</span> <span class="s1">'XGrid'</span><span class="p">,</span> <span class="s1">'on'</span><span class="p">)</span>
+<span class="n">planlanan</span> <span class="o">=</span> <span class="nb">line</span><span class="p">(</span><span class="nb">NaN</span><span class="p">,</span><span class="nb">NaN</span><span class="p">,</span><span class="s1">'LineWidth'</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="s1">'Color'</span><span class="p">,</span><span class="s1">'g'</span><span class="p">);</span>
+<span class="n">gerceklesen</span> <span class="o">=</span> <span class="nb">line</span><span class="p">(</span><span class="nb">NaN</span><span class="p">,</span><span class="nb">NaN</span><span class="p">,</span><span class="s1">'LineWidth'</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="s1">'Color'</span><span class="p">,</span><span class="s1">'r'</span><span class="p">);</span>
+<span class="nb">legend</span><span class="p">([</span><span class="n">planlanan</span> <span class="n">gerceklesen</span><span class="p">],</span><span class="n">sure_tipi</span><span class="p">(</span><span class="mi">1</span><span class="p">),</span><span class="n">sure_tipi</span><span class="p">(</span><span class="mi">2</span><span class="p">))</span>
+<span class="nb">title</span><span class="p">([</span><span class="nb">num2str</span><span class="p">(</span><span class="nb">max</span><span class="p">(</span><span class="nb">sum</span><span class="p">(</span><span class="n">veri</span><span class="p">))),</span><span class="s1">' Haftalık Proje Süreci'</span><span class="p">],</span><span class="s1">'Color'</span><span class="p">,</span><span class="s1">'b'</span><span class="p">,</span><span class="s1">'FontAngle'</span><span class="p">,</span><span class="s1">'italic'</span><span class="p">)</span>
+</code></pre></div></div> <p>Programımızın son hali:</p> <p><img src="/assets/kod/matlab/matlab74.webp" alt=""></p> <p>Bir başka veri dosyası ile programımızı çalıştıralım:</p> <p><img src="/assets/kod/matlab/matlab75.png" alt=""></p> <p><img src="/assets/kod/matlab/matlab76.png" alt=""></p> <p>Bir yazının daha sonuna geldik. Yeni içerikler için sitemizi takip etmeyi unutmayın.</p> <p>Bütün <strong>MATLAB kodlarına</strong> Github sayfam aracılığı ile erişebilirsiniz. Github sayfamın linkine aşağıdan ulaşabilirsiniz. Görüşmek üzere!</p> <p>Github: <a href="https://github.com/TunahanBilgic/kodlamaogreniyorum/tree/main/matlab" rel="external nofollow noopener" target="_blank">Github MATLAB</a></p> <p>Sitemize destek olmak isteyen sponsorlar için link: <a href="https://patreon.com/tunahanbilgic" rel="external nofollow noopener" target="_blank">Patreon</a></p> </div> </article> <br> <hr> <br> <h2 class="text-3xl font-semibold mb-4 mt-12">Enjoy Reading This Article?</h2> <p class="mb-2">Here are some more articles you might like to read next:</p> <ul class="list-disc pl-7 my-3 space-y-2 marker:text-[var(--global-theme-color)]"> <li class="leading-relaxed"> <a class="underline decoration-1 hover:text-[var(--global-hover-color)]" href="/kod/python-sayi-tabani-donusumleri/">Python Sayı Tabanı Dönüşümleri (Taban Aritmetiği)</a> </li> <li class="leading-relaxed"> <a class="underline decoration-1 hover:text-[var(--global-hover-color)]" href="/kod/python-hesap-makinesi/">Python Hesap Makinesi Programı</a> </li> <li class="leading-relaxed"> <a class="underline decoration-1 hover:text-[var(--global-hover-color)]" href="/kod/matlab-hesap-makinesi/">Matlab Hesap Makinesi Programı</a> </li> <li class="leading-relaxed"> <a class="underline decoration-1 hover:text-[var(--global-hover-color)]" href="/kod/matlab-switch-case-yapisi/">MATLAB Switch – Case Yapısı</a> </li> <li class="leading-relaxed"> <a class="underline decoration-1 hover:text-[var(--global-hover-color)]" href="/kod/matlab-rastgele-sayi-uretme/">MATLAB Rastgele Sayı Üretme (rand, randi, randn)</a> </li> <li class="leading-relaxed"> <a class="underline decoration-1 hover:text-[var(--global-hover-color)]" href="/kod/matlab-excele-veri-aktarma/">MATLAB Excel’e Veri Aktarma</a> </li> <li class="leading-relaxed"> <a class="underline decoration-1 hover:text-[var(--global-hover-color)]" href="/kod/matlab-excelden-veri-aktarma/">MATLAB Excel’den Veri Aktarma</a> </li> <li class="leading-relaxed"> <a class="underline decoration-1 hover:text-[var(--global-hover-color)]" href="/kod/python-ile-ekok-ve-ebob-bulma/">Python ile EKOK ve EBOB Bulma</a> </li> <li class="leading-relaxed"> <a class="underline decoration-1 hover:text-[var(--global-hover-color)]" href="/kod/matlab-ile-ekok-ve-ebob-bulma/">MATLAB ile EKOK ve EBOB Bulma</a> </li> <li class="leading-relaxed"> <a class="underline decoration-1 hover:text-[var(--global-hover-color)]" href="/kod/python-ile-ortalama-hesaplama/">Python ile Ortalama Hesaplama (Aritmetik, Geometrik, Harmonik)</a> </li> </ul> </div> </div> <footer class="fixed-bottom" role="contentinfo"> <div class="container mt-0"> © Copyright 2026 Tunahan Bilgiç. Powered by <a href="https://jekyllrb.com/" target="_blank" rel="external nofollow noopener">Jekyll</a> with <a href="https://github.com/alshedivat/al-folio" rel="external nofollow noopener" target="_blank">al-folio</a> theme. Hosted by <a href="https://pages.github.com/" target="_blank" rel="external nofollow noopener">GitHub Pages</a>. Last updated: August 23, 2026. </div> </footer> <script>
+  window.alFolio = {
+    compatBootstrap: false
+  };
+</script> <script src="/assets/js/nav-toggle.js?v=141bd79a73ebc0f0b6ea58e440ae79fc"></script> <script defer src="https://cdn.jsdelivr.net/npm/masonry-layout@4.2.2/dist/masonry.pkgd.min.js" integrity="sha256-Nn1q/fx0H7SNLZMQ5Hw5JLaTRZp0yILA/FRexe19VdI=" crossorigin="anonymous"></script> <script defer src="https://cdn.jsdelivr.net/npm/imagesloaded@5.0.0/imagesloaded.pkgd.min.js" integrity="sha256-htrLFfZJ6v5udOG+3kNLINIKh2gvoKqwEhHYfTTMICc=" crossorigin="anonymous"></script> <script defer src="/assets/js/masonry.js?v=e49affc7bd2646f6acdad1dbe02c2359" type="text/javascript"></script> <script defer type="text/javascript" id="MathJax-script" src="https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/tex-mml-chtml.js" integrity="sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI=" crossorigin="anonymous"></script> <script src="/assets/al_math/js/mathjax-setup.js"></script> <script src="/assets/js/tooltips-setup.js?v=fe487e99db6c43751e6e7bdb2d6a0611"></script> <script src="/assets/js/no_defer.js?v=53b1b1a645525975c963ce8bf8bfefcf"></script> <script defer src="/assets/js/common.js?v=87baac90f765f2f3362dcf6aaf312a8a"></script> <script defer src="/assets/js/copy_code.js?v=c8a01c11a92744d44b093fc3bda915df" type="text/javascript"></script> <script defer src="/assets/js/jupyter_new_tab.js?v=896d254890d9b47f0281f63bfccf0dee"></script> <script async src="https://d1bxh8uas1mnw7.cloudfront.net/assets/embed.js"></script> <script async src="https://badge.dimensions.ai/badge.js"></script> <script async src="https://www.googletagmanager.com/gtag/js?id=G-JMX8XJEMM1"></script> <script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag() {
+    window.dataLayer.push(arguments);
+  }
+  gtag("js", new Date());
+  gtag("config", "G-JMX8XJEMM1");
+</script> <script defer src="https://cdn.jsdelivr.net/npm/medium-zoom@1.1.0/dist/medium-zoom.min.js" integrity="sha256-ZgMyDAIYDYGxbcpJcfUnYwNevG/xi9OHKaR/8GK+jWc=" crossorigin="anonymous"></script> <script defer src="/assets/al_img_tools/js/zoom.js"></script> <script defer src="/assets/js/progress-bar.js?v=499464c5c63ced6cf7ad62509f1e2610" type="text/javascript"></script> <script src="https://cdn.jsdelivr.net/npm/vanilla-back-to-top@7.2.1/dist/vanilla-back-to-top.min.js" integrity="sha256-uMJJ3EoTyfRBoTbR+lrfu1uRQ87RZG8AR3cVNuQVeFg=" crossorigin="anonymous"></script> <script>
+    addBackToTop();
+  </script> <script type="module" src="/assets/al_search/js/search/ninja-keys.min.js"></script> <ninja-keys hidebreadcrumbs noautoloadmdicons placeholder="Type to start searching"></ninja-keys> <script src="/assets/al_search/js/search-setup.js"></script> <script>
+// get the ninja-keys element
+const ninja = document.querySelector('ninja-keys');
+
+// add the home and posts menu items
+ninja.data = [{
+    id: "nav-home",
+    title: "Home",
+    section: "Navigation",
+    handler: () => {
+      window.location.href = "/";
+    },
+  },{id: "nav-portfolio",
+          title: "Portfolio",
+          description: "My Portfolio",
+          section: "Navigation",
+          handler: () => {
+            window.location.href = "/portfolio/";
+          },
+        },{id: "nav-cv",
+          title: "CV",
+          description: "Here&#39;s a short summary of my background, please feel free to contact me for detailed information.",
+          section: "Navigation",
+          handler: () => {
+            window.location.href = "/cv/";
+          },
+        },{id: "nav-github",
+          title: "Github",
+          description: "",
+          section: "Navigation",
+          handler: () => {
+            window.location.href = "/github/";
+          },
+        },{id: "dropdown-pbi",
+              title: "PBI",
+              description: "",
+              section: "Dropdown",
+              handler: () => {
+                window.location.href = "/portfolio/";
+              },
+            },{id: "dropdown-or",
+              title: "OR",
+              description: "",
+              section: "Dropdown",
+              handler: () => {
+                window.location.href = "/portfolio/";
+              },
+            },{id: "dropdown-kodlama-öğreniyorum",
+              title: "Kodlama Öğreniyorum",
+              description: "",
+              section: "Dropdown",
+              handler: () => {
+                window.location.href = "/kod/";
+              },
+            },{id: "post-python-sayı-tabanı-dönüşümleri-taban-aritmetiği",
+        
+          title: "Python Sayı Tabanı Dönüşümleri (Taban Aritmetiği)",
+        
+        description: "python-ornek-uygulamalar",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/kod/python-sayi-tabani-donusumleri/";
+          
+        },
+      },{id: "post-python-hesap-makinesi-programı",
+        
+          title: "Python Hesap Makinesi Programı",
+        
+        description: "Python&#39;da “while” döngüsünü ve “if-elif” koşul deyimini kullanarak dört işlem yapan hesap makinesi programı",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/kod/python-hesap-makinesi/";
+          
+        },
+      },{id: "post-matlab-hesap-makinesi-programı",
+        
+          title: "Matlab Hesap Makinesi Programı",
+        
+        description: "Matlab&#39;da dört işlem yapan hesap makinesi programı",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/kod/matlab-hesap-makinesi/";
+          
+        },
+      },{id: "post-matlab-switch-case-yapısı",
+        
+          title: "MATLAB Switch – Case Yapısı",
+        
+        description: "matlab-kosul-ve-donguler",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/kod/matlab-switch-case-yapisi/";
+          
+        },
+      },{id: "post-matlab-rastgele-sayı-üretme-rand-randi-randn",
+        
+          title: "MATLAB Rastgele Sayı Üretme (rand, randi, randn)",
+        
+        description: "matlab-fonksiyonlar",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/kod/matlab-rastgele-sayi-uretme/";
+          
+        },
+      },{id: "post-matlab-excel-e-veri-aktarma",
+        
+          title: "MATLAB Excel’e Veri Aktarma",
+        
+        description: "matlab-veri-islemleri",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/kod/matlab-excele-veri-aktarma/";
+          
+        },
+      },{id: "post-matlab-gantt-grafiği-oluşturma",
+        
+          title: "MATLAB Gantt Grafiği Oluşturma",
+        
+        description: "matlab-ornek-uygulamalar",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/kod/matlab-gantt-grafigi-olusturma/";
+          
+        },
+      },{id: "post-matlab-excel-den-veri-aktarma",
+        
+          title: "MATLAB Excel’den Veri Aktarma",
+        
+        description: "matlab-veri-islemleri",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/kod/matlab-excelden-veri-aktarma/";
+          
+        },
+      },{id: "post-python-ile-ekok-ve-ebob-bulma",
+        
+          title: "Python ile EKOK ve EBOB Bulma",
+        
+        description: "python-ornek-uygulamalar",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/kod/python-ile-ekok-ve-ebob-bulma/";
+          
+        },
+      },{id: "post-matlab-ile-ekok-ve-ebob-bulma",
+        
+          title: "MATLAB ile EKOK ve EBOB Bulma",
+        
+        description: "matlab-ornek-uygulamalar",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/kod/matlab-ile-ekok-ve-ebob-bulma/";
+          
+        },
+      },{id: "post-python-ile-ortalama-hesaplama-aritmetik-geometrik-harmonik",
+        
+          title: "Python ile Ortalama Hesaplama (Aritmetik, Geometrik, Harmonik)",
+        
+        description: "python-ornek-uygulamalar",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/kod/python-ile-ortalama-hesaplama/";
+          
+        },
+      },{id: "post-matlab-ile-ortalama-hesaplama-aritmetik-geometrik-harmonik",
+        
+          title: "MATLAB ile Ortalama Hesaplama (Aritmetik, Geometrik, Harmonik)",
+        
+        description: "matlab-ornek-uygulamalar",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/kod/matlab-ile-ortalama-hesaplama/";
+          
+        },
+      },{id: "post-python-while-döngüsü",
+        
+          title: "Python “while” Döngüsü",
+        
+        description: "python-kosul-ve-donguler",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/kod/python-while-dongusu/";
+          
+        },
+      },{id: "post-matlab-while-döngüsü",
+        
+          title: "MATLAB “while” Döngüsü",
+        
+        description: "matlab-kosul-ve-donguler",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/kod/matlab-while-dongusu/";
+          
+        },
+      },{id: "post-python-for-döngüsü",
+        
+          title: "Python “for” Döngüsü",
+        
+        description: "python-kosul-ve-donguler",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/kod/python-for-dongusu/";
+          
+        },
+      },{id: "post-matlab-for-döngüsü",
+        
+          title: "MATLAB “for” Döngüsü",
+        
+        description: "matlab-kosul-ve-donguler",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/kod/matlab-for-dongusu/";
+          
+        },
+      },{id: "post-python-if-koşul-deyimi",
+        
+          title: "Python “if” Koşul Deyimi",
+        
+        description: "python-kosul-ve-donguler",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/kod/python-if-kosul-deyimi/";
+          
+        },
+      },{id: "post-matlab-if-koşul-deyimi",
+        
+          title: "MATLAB “if” Koşul Deyimi",
+        
+        description: "matlab-kosul-ve-donguler",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/kod/matlab-if-kosul-deyimi/";
+          
+        },
+      },{id: "post-python-kabarcık-sıralama-bubble-sorting-algoritması",
+        
+          title: "Python Kabarcık Sıralama (Bubble Sorting) Algoritması",
+        
+        description: "python-algoritmalar",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/kod/python-kabarcik-siralama-algoritmasi/";
+          
+        },
+      },{id: "post-matlab-kabarcık-sıralama-bubble-sorting-algoritması",
+        
+          title: "MATLAB Kabarcık Sıralama ( Bubble Sorting) Algoritması",
+        
+        description: "matlab-algoritmalar",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/kod/matlab-kabarcik-siralama-algoritmasi/";
+          
+        },
+      },{id: "post-python-ile-dairesel-grafik-pie-chart",
+        
+          title: "Python ile Dairesel Grafik (Pie Chart)",
+        
+        description: "python-ornek-uygulamalar",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/kod/python-dairesel-grafik/";
+          
+        },
+      },{id: "post-python-seçerek-sıralama-selection-sorting-algoritması",
+        
+          title: "Python Seçerek Sıralama (Selection Sorting) Algoritması",
+        
+        description: "python-algoritmalar",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/kod/python-secerek-siralama-algoritmasi/";
+          
+        },
+      },{id: "post-matlab-seçerek-sıralama-selection-sorting-algoritması",
+        
+          title: "MATLAB Seçerek Sıralama (Selection Sorting) Algoritması",
+        
+        description: "matlab-algoritmalar",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/kod/matlab-secerek-siralama-algoritmasi/";
+          
+        },
+      },{id: "post-python-ile-sütun-grafiği-bar-chart",
+        
+          title: "Python ile Sütun Grafiği (Bar Chart)",
+        
+        description: "python-ornek-uygulamalar",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/kod/python-sutun-grafigi-bar-chart/";
+          
+        },
+      },{id: "post-python-input-komutu-ve-veri-türleri",
+        
+          title: "Python “input()” Komutu ve Veri Türleri",
+        
+        description: "python-temel-bilgiler",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/kod/python-input-komutu-ve-veri-turleri/";
+          
+        },
+      },{id: "post-python-print-komutu-detaylar",
+        
+          title: "Python “print()” Komutu Detaylar",
+        
+        description: "python-temel-bilgiler",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/kod/python-print-komutu-detaylar/";
+          
+        },
+      },{id: "post-python-da-değişken-tanımlama",
+        
+          title: "Python’da Değişken Tanımlama",
+        
+        description: "python-temel-bilgiler",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/kod/pythonda-degisken-tanimlama/";
+          
+        },
+      },{id: "post-python-ile-programlamaya-giriş",
+        
+          title: "Python ile Programlamaya Giriş",
+        
+        description: "python-temel-bilgiler",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/kod/python-ile-programlamaya-giris/";
+          
+        },
+      },{id: "post-matlab-klavyeden-veri-alma",
+        
+          title: "MATLAB Klavyeden Veri Alma",
+        
+        description: "matlab-temel-bilgiler",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/kod/matlab-klavyeden-veri-alma/";
+          
+        },
+      },{id: "post-matlab-klavyeden-veri-alma",
+        
+          title: "MATLAB Klavyeden Veri Alma",
+        
+        description: "matlab-temel-bilgiler",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/kod/matlab-klavyeden-veri-alma-copy-6/";
+          
+        },
+      },{id: "post-matlab-komut-dosyaları-script-files",
+        
+          title: "MATLAB Komut Dosyaları(Script Files)",
+        
+        description: "matlab-temel-bilgiler",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/kod/matlab-script-files/";
+          
+        },
+      },{id: "post-matlab-da-değişken-tanımlama",
+        
+          title: "MATLAB’da Değişken Tanımlama",
+        
+        description: "Matlab Temel Bilgiler",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/kod/matlabda-degisken-tanimlama/";
+          
+        },
+      },{id: "post-matlab-ile-programlamaya-giriş",
+        
+          title: "Matlab ile Programlamaya Giriş",
+        
+        description: "Matlab Temel Bilgiler",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/kod/matlab-ile-programlamaya-giris/";
+          
+        },
+      },{id: "projects-hr-report",
+          title: 'HR Report',
+          description: "Power BI Dashboards for HR Department",
+          section: "Projects",handler: () => {
+              window.location.href = "/portfolio/pbi_hr/";
+            },},{id: "projects-sales-report",
+          title: 'SALES Report',
+          description: "Power BI Dashboards for Sales Department",
+          section: "Projects",handler: () => {
+              window.location.href = "/portfolio/pbi_sales/";
+            },},{
+        id: 'social-email',
+        title: 'email',
+        section: 'Socials',
+        handler: () => {
+          window.open("mailto:%6D%61%69%6C@%74%75%6E%61%68%61%6E%62%69%6C%67%69%63.%64%65%76", "_blank");
+        },
+      },{
+        id: 'social-linkedin',
+        title: 'LinkedIn',
+        section: 'Socials',
+        handler: () => {
+          window.open("https://www.linkedin.com/in/tunahan-bilgiç", "_blank");
+        },
+      },{
+        id: 'social-github',
+        title: 'GitHub',
+        section: 'Socials',
+        handler: () => {
+          window.open("https://github.com/tunahanbilgic", "_blank");
+        },
+      },{
+        id: 'social-rss',
+        title: 'RSS Feed',
+        section: 'Socials',
+        handler: () => {
+          window.open("/feed.xml", "_blank");
+        },
+      },{
+        id: 'social-custom_social',
+        title: 'Custom_social',
+        section: 'Socials',
+        handler: () => {
+          window.open("https://www.kodlamaogreniyorum.com/", "_blank");
+        },
+      },{
+      id: 'light-theme',
+      title: 'Change theme to light',
+      description: 'Change the theme of the site to Light',
+      section: 'Theme',
+      handler: () => {
+        setThemeSetting("light");
+      },
+    },
+    {
+      id: 'dark-theme',
+      title: 'Change theme to dark',
+      description: 'Change the theme of the site to Dark',
+      section: 'Theme',
+      handler: () => {
+        setThemeSetting("dark");
+      },
+    },
+    {
+      id: 'system-theme',
+      title: 'Use system default theme',
+      description: 'Change the theme of the site to System Default',
+      section: 'Theme',
+      handler: () => {
+        setThemeSetting("system");
+      },
+    },];
+
+</script> <script src="/assets/al_search/js/shortcut-key.js"></script> </body> </html>
