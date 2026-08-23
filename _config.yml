@@ -2,25 +2,25 @@
 # Site settings
 # -----------------------------------------------------------------------------
 
-title: Tunahan Bilgiç # the website title (if blank, full name will be used instead)
+title: Data Analyst | Tunahan Bilgiç # the website title (if blank, full name will be used instead)
 first_name: Tunahan
 middle_name: 
 last_name: Bilgiç
 contact_note: >
   Please prioritize LinkedIn or email for important messages.
 description: > # the ">" symbol means to ignore newlines until "footer_text:"
-  A simple, whitespace theme for academics. Based on [*folio](https://github.com/bogoli/-folio) design.
+ Tunahan Bilgiç | Data Analyst - Power BI Dashboars, Optimization Models and ETL Projects.
 footer_text: >
   Powered by <a href="https://jekyllrb.com/" target="_blank">Jekyll</a> with <a href="https://github.com/alshedivat/al-folio">al-folio</a> theme.
   Hosted by <a href="https://pages.github.com/" target="_blank">GitHub Pages</a>.
-keywords: jekyll, jekyll-theme, portfolio-website # add your own keywords or leave empty
+keywords: data,data analyst,tunahan, bilgiç,tunahan bilgiç, portfolio-website # add your own keywords or leave empty
 lang: en # the language of your site (for example: en, fr, cn, ru, etc.)
 icon: favicon.ico # the emoji used as the favicon (alternatively, provide image name in /assets/img/)
 apple_touch_icon: # image name in /assets/img/ (or a rooted path / absolute URL) used for iOS home-screen bookmarks; needs a real 180x180 PNG, since Safari ignores the emoji favicon above. Left empty, iOS falls back to a screenshot of the page.
 
 url: https://tunahanbilgic.dev # the base hostname & protocol for your site
 baseurl:  # the subpath of your site, e.g. /blog/. Leave blank for root
-last_updated: false # set to true if you want to display last updated in the footer
+last_updated: true # set to true if you want to display last updated in the footer
 impressum_path: # set to path to include impressum link in the footer, use the same path as permalink in a page, helps to conform with EU GDPR
 back_to_top: true # set to false to disable the back to top button
 
@@ -136,7 +136,7 @@ bing_site_verification: # out your bing-site-verification ID (Bing Webmaster)
 # -----------------------------------------------------------------------------
 
 blog_name: Tunahan Bilgiç # blog_name will be displayed in your blog page
-blog_description: Portfolio
+blog_description: Personal Portfolio
 permalink: /blog/:year/:title/
 lsi: false # produce an index for related post
 
