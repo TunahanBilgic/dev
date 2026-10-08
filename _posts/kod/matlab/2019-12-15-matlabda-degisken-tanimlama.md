@@ -1,4 +1,5 @@
 ---
+layout: post
 title: MATLAB’da Değişken Tanımlama
 date: 2019-12-15 11:31:00
 description: Matlab Temel Bilgiler

@@ -1,4 +1,5 @@
 ---
+layout: post
 title: Matlab ile Programlamaya Giriş
 date: 2019-12-14 07:50:00
 description: Matlab Temel Bilgiler
