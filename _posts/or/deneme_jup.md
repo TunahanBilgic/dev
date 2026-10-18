@@ -1,0 +1,127 @@
+---
+layout: post
+title: SALBP
+date: 2026-10-18 21:55:00
+description: SALBP
+categories: OR
+tags: 
+    - disp 
+    - fprintf 
+    - komut penceresi
+    - matlab
+    - yazi yazdirma
+---
+
+
+
+<b>Table of Contents:
+* [Libs](#Libs:)
+* [Data](#Data:)
+* [Model](#Model:)
+* [Solution](#Solution:)
+
+<h2> Libs:
+
+
+```python
+from docplex.mp.model import Model #cplex
+```
+
+    C:\Users\PC\anaconda3\envs\Python38\lib\site-packages\scipy\__init__.py:146: UserWarning: A NumPy version >=1.16.5 and <1.23.0 is required for this version of SciPy (detected version 1.23.1
+      warnings.warn(f"A NumPy version >={np_minversion} and <{np_maxversion}"
+    
+
+<h2>Data:
+
+
+```python
+W = 3 #worker
+P = [[], [0], [0], [2], [3], [4]]   #precedence
+T = [5, 4, 2, 3, 8]      #times
+M = 999999999 #big M
+```
+
+<h2>Model:
+
+
+```python
+def mat_model(S:int,P:list,T:list):
+    """ S => Worker
+        P => Precedence
+        T => Job Times
+    """
+    math_model = Model(name="SALB - Type 2")
+    #math_model.parameters.workmem = 8192
+    M = 99999
+
+    #Decision Variable
+    x = [[math_model.binary_var(name=f'x({i}_{s})') for s in range(S)] for i in range(len(T))]
+
+    #Objective Function
+    C = math_model.continuous_var(name="Cycle")
+    math_model.set_objective('min', C)
+
+    #Constraint 1 - Assign all jobs:
+    for i in range(len(T)):
+        math_model.add_constraint(math_model.sum(x[i][s] for s in range(S)) == 1)
+
+    #Constraint 2 - Precedence Relationships:
+    for j in range(len(T)):
+        for i in range(len(T)):
+            if i in P[j]:
+                math_model.add_constraint(
+                    math_model.sum(s * x[i][s] for s in range(S)) <= math_model.sum(s * x[j][s] for s in range(S)))
+
+    #Constraint 3 - Stations/Workers Cycle:
+    for s in range(S):
+            math_model.add_constraint(C >= (math_model.sum(x[i][s] * T[i] for i in range(len(T)))))
+
+    
+    def solve_model():
+        print("Starting to solve.. "+"SALP")
+        solution = math_model.solve()
+        objective_value = math_model.objective_value
+        print("The solution process is completed.\n")
+        print(math_model.solve_status)
+        if solution:
+            math_model.print_information()
+            print("Obj:", math_model.objective_value)
+            for i in range(len(T)):
+                for s in range((S)):
+                    if x[i][s].solution_value == 1:
+                        print(x[i][s], T[i])
+
+    solve_model()
+```
+
+<h3>Solution:
+
+
+```python
+mat_model(W, P, T)
+```
+
+    Starting to solve.. SALP
+    The solution process is completed.
+    
+    JobSolveStatus.OPTIMAL_SOLUTION
+    Model: SALB - Type 2
+     - number of variables: 16
+       - binary=15, integer=0, continuous=1
+     - number of constraints: 12
+       - linear=12
+     - parameters: defaults
+     - objective: minimize
+     - problem type is: MILP
+    Obj: 8.0
+    x(0_0) 5
+    x(1_1) 4
+    x(2_0) 2
+    x(3_1) 3
+    x(4_2) 8
+    
+
+
+```python
+
+```
