@@ -317,6 +317,11 @@ defaults:
       path: "_posts/kod/python"
     values:
       permalink: /kod/:title/
+
+  - scope:
+      path: "_posts/or/"
+    values:
+      permalink: /or/:title/
   
 sass:
   style: compressed
