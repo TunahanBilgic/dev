@@ -11,7 +11,7 @@ profile:
   more_info: >
     <p></p>
 
-
+    <style>@media (min-width: 576px) { .profile { width: 20%; } }</style>
 selected_papers: false # includes a list of papers marked as "selected={true}"
 social: true # includes social icons at the bottom of the page
 
