@@ -5,11 +5,11 @@ date: 2026-10-18 21:55:00
 description: SALBP
 categories: OR
 tags: 
-    - disp 
-    - fprintf 
-    - komut penceresi
-    - matlab
-    - yazi yazdirma
+    - OR 
+    - Optimization 
+    - Line Balancing
+    - python
+    - cplex
 ---
 
 
