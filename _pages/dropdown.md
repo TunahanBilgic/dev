@@ -9,7 +9,7 @@ children:
     permalink: /portfolio/
   - title: divider
   - title: OR
-    permalink: /portfolio/
+    permalink: /or/
   - title: divider
   - title: Kodlama Öğreniyorum
     permalink: /kod/
