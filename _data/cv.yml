@@ -16,7 +16,6 @@ cv:
     street:
     city: Izmir
     region: Türkiye
-    postalCode: 35030
     countryCode: TR
 
   sections:
